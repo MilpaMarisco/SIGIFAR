@@ -1,0 +1,4 @@
+com\sigifar\App.class
+module-info.class
+com\sigifar\PrimaryController.class
+com\sigifar\SecondaryController.class
