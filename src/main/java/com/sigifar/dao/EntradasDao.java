@@ -1,6 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * 
+Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.sigifar.dao;
 
@@ -12,13 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sigifar.beans.EntradasBean;
+import com.sigifar.beans.UsuariosBean;
 import com.sigifar.util.DBConnection;
 
 /**
  *
  * @author amilp
  */
-public class EntradasDao {
+public class EntradasDAO {
 
     public void insertaEntrada(EntradasBean entrada) {
         DBConnection db = new DBConnection();
@@ -139,6 +141,53 @@ public class EntradasDao {
         }
     }
 
+    public List<EntradasBean> consultaEntradas() {
+        DBConnection db = new DBConnection();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM Entradas";
+        List<EntradasBean> entradas = new ArrayList<>();
+
+        try {
+            conn = db.getConnection();
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                EntradasBean entrada = new EntradasBean(
+                        rs.getInt("id_entrada"),
+                        rs.getInt("id_producto"),
+                        rs.getInt("numero_lote"),
+                        rs.getDate("fecha"),
+                        rs.getInt("cantidad"),
+                        rs.getInt("id_usuario")
+                );
+                entradas.add(entrada);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al consultar entradas: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+        }
+
+        return entradas;
+    }
+
     public List<EntradasBean> consultaEntrada(int id_entrada) {
         DBConnection db = new DBConnection();
         Connection conn = null;
@@ -186,6 +235,5 @@ public class EntradasDao {
 
         return entradas;
     }
-
 
 }

@@ -14,11 +14,8 @@
 }
 
 /* ======== Logo ======== */
-#logoLabel {
-  -fx-font-size: 48px;
-  -fx-font-weight: bold;
-  -fx-text-fill: linear-gradient(to right, #00aaff, #0077cc);
-  -fx-letter-spacing: 2px;
+#logoImage {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.2, 0, 3);
 }
 
 /* ======== Título Login ======== */
@@ -56,23 +53,18 @@
 }
 
 /* ======== Botón principal ======== */
-#btnLogin {
-  -fx-background-color: linear-gradient(to right, #007bff, #00aaff);
-  -fx-text-fill: white;
-  -fx-font-weight: bold;
-  -fx-font-size: 15px;
-  -fx-background-radius: 10;
-  -fx-padding: 10 20;
-  -fx-cursor: hand;
-  -fx-alignment: center;
-  -fx-graphic-text-gap: 8;
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 0;
 }
-#btnLogin:hover {
-  -fx-background-color: linear-gradient(to right, #0099ff, #33ccff);
+.icon-button:hover {
+    -fx-opacity: 0.85;
 }
-#btnLogin:pressed {
-  -fx-background-color: #0066cc;
+.icon-button:pressed {
+    -fx-opacity: 0.7;
 }
+
 
 /* ======== Botón de regreso ======== */
 #btnBack {
