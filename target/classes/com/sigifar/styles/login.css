@@ -1,0 +1,93 @@
+/* ======== Estilos Generales ======== */
+.root {
+  -fx-background-color: linear-gradient(to right, #111111, #1a1a1a);
+  -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+  -fx-text-fill: white;
+}
+
+/* ======== Contenedor principal ======== */
+#loginPane {
+  -fx-background-color: #1e1e1e;
+  -fx-background-radius: 15;
+  -fx-padding: 40;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 5);
+}
+
+/* ======== Logo ======== */
+#logoLabel {
+  -fx-font-size: 48px;
+  -fx-font-weight: bold;
+  -fx-text-fill: linear-gradient(to right, #00aaff, #0077cc);
+  -fx-letter-spacing: 2px;
+}
+
+/* ======== Título Login ======== */
+#titleLabel {
+  -fx-font-size: 28px;
+  -fx-text-fill: #ffffff;
+  -fx-font-weight: 500;
+  -fx-padding: 10 0 20 0;
+}
+
+/* ======== Labels de texto ======== */
+.label {
+  -fx-text-fill: #cccccc;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+}
+
+/* ======== Campos de texto ======== */
+.text-field,
+.password-field {
+  -fx-background-color: #2b2b2b;
+  -fx-background-radius: 8;
+  -fx-border-color: #0077cc;
+  -fx-border-radius: 8;
+  -fx-border-width: 1;
+  -fx-text-fill: #ffffff;
+  -fx-prompt-text-fill: #aaaaaa;
+  -fx-font-size: 14px;
+  -fx-padding: 8 12;
+}
+.text-field:focused,
+.password-field:focused {
+  -fx-border-color: #00aaff;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 170, 255, 0.4), 8, 0, 0, 0);
+}
+
+/* ======== Botón principal ======== */
+#btnLogin {
+  -fx-background-color: linear-gradient(to right, #007bff, #00aaff);
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-font-size: 15px;
+  -fx-background-radius: 10;
+  -fx-padding: 10 20;
+  -fx-cursor: hand;
+  -fx-alignment: center;
+  -fx-graphic-text-gap: 8;
+}
+#btnLogin:hover {
+  -fx-background-color: linear-gradient(to right, #0099ff, #33ccff);
+}
+#btnLogin:pressed {
+  -fx-background-color: #0066cc;
+}
+
+/* ======== Botón de regreso ======== */
+#btnBack {
+  -fx-background-color: transparent;
+  -fx-cursor: hand;
+}
+#btnBack:hover {
+  -fx-opacity: 0.7;
+}
+
+/* ======== Imagen lateral ======== */
+#imagePane {
+  -fx-background-color: transparent;
+}
+.image-view {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.3, 0, 0);
+  -fx-background-radius: 10;
+}
