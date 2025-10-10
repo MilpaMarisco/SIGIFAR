@@ -4,7 +4,6 @@
  */
 package com.sigifar.dao;
 
-import com.sigifar.beans.EntradasBean;
 import com.sigifar.beans.UsuariosBean;
 import com.sigifar.util.DBConnection;
 
@@ -270,6 +269,9 @@ public class UsuariosDAO {
                         rs.getString("rol"),
                         rs.getBytes("imagen")
                 );
+            }
+            else{
+                System.out.println("No se encontró ningún usuario con las credenciales proporcionadas.");
             }
 
         } catch (SQLException e) {

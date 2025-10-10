@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sigifar.beans.EntradasBean;
-import com.sigifar.beans.UsuariosBean;
 import com.sigifar.util.DBConnection;
 
 /**
