@@ -19,6 +19,7 @@ public class DBConnection {
 
     private Connection connection;
 
+    @SuppressWarnings("CallToPrintStackTrace")
     public DBConnection() {
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -31,6 +32,7 @@ public class DBConnection {
         return connection;
     }
 
+    @SuppressWarnings("CallToPrintStackTrace")
     public void closeConnection() {
         try {
             if (connection != null && !connection.isClosed()) {
