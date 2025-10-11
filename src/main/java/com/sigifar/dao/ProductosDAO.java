@@ -12,42 +12,46 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sigifar.beans.EntradasBean;
+import com.sigifar.beans.ProductosBean;
 import com.sigifar.util.DBConnection;
 
 /**
  *
  * @author amilp
  */
-public class EntradasDAO {
+public class ProductosDAO {
 
-    public void insertaEntrada(EntradasBean entrada) {
+    public void insertaProducto(ProductosBean producto) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO Entradas (id_producto, numero_lote, cantidad, fecha, id_usuario) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Productos (clave_producto, nombre, marca, presentacion, numero_lote, cantidad, fecha_caducidad, id_proveedor, id_ubicacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, entrada.getId_producto());
-            stmt.setInt(2, entrada.getNumero_lote());
-            stmt.setDate(3, new java.sql.Date(entrada.getFecha().getTime()));
-            stmt.setInt(4, entrada.getCantidad());
-            stmt.setInt(5, entrada.getId_usuario());
+            stmt.setString(1, producto.getClave_producto());
+            stmt.setString(2, producto.getNombre());
+            stmt.setString(3, producto.getMarca());
+            stmt.setString(4, producto.getPresentacion());
+            stmt.setString(5, producto.getNumero_lote());
+            stmt.setInt(6, producto.getCantidad());
+            stmt.setString(7, producto.getFecha_caducidad());
+            stmt.setInt(8, producto.getId_proveedor());
+            stmt.setInt(9, producto.getId_ubicacion());
 
             int filas = stmt.executeUpdate();
 
             if (filas > 0) {
-                System.out.println("Entrada insertada correctamente.");
+                System.out.println("Producto insertado correctamente.");
             } else {
                 System.out.println("No se insertó ninguna fila.");
             }
 
         } catch (SQLException e) {
-            System.err.println("Error al insertar entrada: " + e.getMessage());
+            System.err.println("Error al insertar producto: " + e.getMessage());
         } finally {
             try {
                 if (stmt != null) {
@@ -62,28 +66,28 @@ public class EntradasDAO {
         }
     }
 
-    public void eliminaEntrada(int id_entrada) {
+    public void eliminaProducto(int clave_producto) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "DELETE FROM Entradas WHERE id_entrada = ?";
+        String sql = "DELETE FROM Productos WHERE clave_producto = ?";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id_entrada);
+            stmt.setInt(1, clave_producto);
 
             int filas = stmt.executeUpdate();
 
             if (filas > 0) {
-                System.out.println("Entrada eliminada correctamente.");
+                System.out.println("Producto eliminado correctamente.");
             } else {
                 System.out.println("No se eliminó ninguna fila.");
             }
 
         } catch (SQLException e) {
-            System.err.println("Error al eliminar entrada: " + e.getMessage());
+            System.err.println("Error al eliminar proveedor: " + e.getMessage());
         } finally {
             try {
                 if (stmt != null) {
@@ -98,34 +102,38 @@ public class EntradasDAO {
         }
     }
 
-    public void actualizaEntrada(EntradasBean entrada) {
+    public void actualizaProducto(ProductosBean producto) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "UPDATE Entradas SET id_producto = ?, numero_lote = ?, cantidad = ?, fecha = ?, id_usuario = ? WHERE id_entrada = ?";
+        String sql = "UPDATE Productos SET clave_producto = ?, nombre = ?, marca = ?, presentacion = ?, numero_lote = ?, cantidad = ?, fecha_caducidad = ?, id_proveedor = ?, id_ubicacion = ? WHERE clave_producto = ?";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, entrada.getId_producto());
-            stmt.setInt(2, entrada.getNumero_lote());
-            stmt.setDate(3, new java.sql.Date(entrada.getFecha().getTime()));
-            stmt.setInt(4, entrada.getCantidad());
-            stmt.setInt(5, entrada.getId_usuario());
-            stmt.setInt(6, entrada.getId_entrada());
+            stmt.setString(1, producto.getClave_producto());
+            stmt.setString(2, producto.getNombre());
+            stmt.setString(3, producto.getMarca());
+            stmt.setString(4, producto.getPresentacion());
+            stmt.setString(5, producto.getNumero_lote());
+            stmt.setInt(6, producto.getCantidad());
+            stmt.setString(7, producto.getFecha_caducidad());
+            stmt.setInt(8, producto.getId_proveedor());
+            stmt.setInt(9, producto.getId_ubicacion());
+            stmt.setString(10, producto.getClave_producto());
 
             int filas = stmt.executeUpdate();
 
             if (filas > 0) {
-                System.out.println("Entrada actualizada correctamente.");
+                System.out.println("Producto actualizado correctamente.");
             } else {
                 System.out.println("No se actualizó ninguna fila.");
             }
 
         } catch (SQLException e) {
-            System.err.println("Error al actualizar entrada: " + e.getMessage());
+            System.err.println("Error al actualizar producto: " + e.getMessage());
         } finally {
             try {
                 if (stmt != null) {
@@ -140,14 +148,14 @@ public class EntradasDAO {
         }
     }
 
-    public List<EntradasBean> consultaEntradas() {
+    public List<ProductosBean> consultaProductos() {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM Entradas";
-        List<EntradasBean> entradas = new ArrayList<>();
+        String sql = "SELECT * FROM Productos";
+        List<ProductosBean> productos = new ArrayList<>();
 
         try {
             conn = db.getConnection();
@@ -155,19 +163,23 @@ public class EntradasDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                EntradasBean entrada = new EntradasBean(
-                        rs.getInt("id_entrada"),
+                ProductosBean producto = new ProductosBean(
                         rs.getInt("id_producto"),
-                        rs.getInt("numero_lote"),
-                        rs.getDate("fecha"),
+                        rs.getString("clave_producto"),
+                        rs.getString("nombre"),
+                        rs.getString("marca"),
+                        rs.getString("presentacion"),
+                        rs.getString("numero_lote"),
                         rs.getInt("cantidad"),
-                        rs.getInt("id_usuario")
+                        rs.getString("fecha_caducidad"),
+                        rs.getInt("id_proveedor"),
+                        rs.getInt("id_ubicacion")
                 );
-                entradas.add(entrada);
+                productos.add(producto);
             }
 
         } catch (SQLException e) {
-            System.err.println("Error al consultar entradas: " + e.getMessage());
+            System.err.println("Error al consultar productos: " + e.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -184,37 +196,41 @@ public class EntradasDAO {
             }
         }
 
-        return entradas;
+        return productos;
     }
 
-    public EntradasBean consultaEntrada(int id_entrada) {
+    public ProductosBean consultaProducto(int clave_producto) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        ProductosBean producto = null;
 
-        String sql = "SELECT * FROM Entradas WHERE id_entrada = ?";
-        EntradasBean entrada = null;
+        String sql = "SELECT * FROM Productos WHERE clave_producto = ?";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id_entrada);
+            stmt.setInt(1, clave_producto);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                entrada = new EntradasBean(
-                        rs.getInt("id_entrada"),
+                producto = new ProductosBean(
                         rs.getInt("id_producto"),
-                        rs.getInt("numero_lote"),
-                        rs.getDate("fecha"),
+                        rs.getString("clave_producto"),
+                        rs.getString("nombre"),
+                        rs.getString("marca"),
+                        rs.getString("presentacion"),
+                        rs.getString("numero_lote"),
                         rs.getInt("cantidad"),
-                        rs.getInt("id_usuario")
+                        rs.getString("fecha_caducidad"),
+                        rs.getInt("id_proveedor"),
+                        rs.getInt("id_ubicacion")
                 );
             }
 
         } catch (SQLException e) {
-            System.err.println("Error al consultar entrada: " + e.getMessage());
+            System.err.println("Error al consultar producto: " + e.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -231,7 +247,7 @@ public class EntradasDAO {
             }
         }
 
-        return entrada;
+        return producto;
     }
 
 }

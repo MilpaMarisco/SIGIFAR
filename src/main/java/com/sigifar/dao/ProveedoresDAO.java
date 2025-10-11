@@ -12,42 +12,42 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sigifar.beans.EntradasBean;
+import com.sigifar.beans.ProveedoresBean;
 import com.sigifar.util.DBConnection;
 
 /**
  *
  * @author amilp
  */
-public class EntradasDAO {
+public class ProveedoresDAO {
 
-    public void insertaEntrada(EntradasBean entrada) {
+    public void insertaProveedor(ProveedoresBean proveedor) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO Entradas (id_producto, numero_lote, cantidad, fecha, id_usuario) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Proveedores (id_proveedor, nombre, contacto, telefono, correo) VALUES (?, ?, ?, ?, ?)";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, entrada.getId_producto());
-            stmt.setInt(2, entrada.getNumero_lote());
-            stmt.setDate(3, new java.sql.Date(entrada.getFecha().getTime()));
-            stmt.setInt(4, entrada.getCantidad());
-            stmt.setInt(5, entrada.getId_usuario());
+            stmt.setInt(1, proveedor.getId_proveedor());
+            stmt.setString(2, proveedor.getNombre());
+            stmt.setString(3, proveedor.getContacto());
+            stmt.setString(4, proveedor.getTelefono());
+            stmt.setString(5, proveedor.getCorreo());
 
             int filas = stmt.executeUpdate();
 
             if (filas > 0) {
-                System.out.println("Entrada insertada correctamente.");
+                System.out.println("Proveedor insertado correctamente.");
             } else {
                 System.out.println("No se insertó ninguna fila.");
             }
 
         } catch (SQLException e) {
-            System.err.println("Error al insertar entrada: " + e.getMessage());
+            System.err.println("Error al insertar proveedor: " + e.getMessage());
         } finally {
             try {
                 if (stmt != null) {
@@ -62,28 +62,28 @@ public class EntradasDAO {
         }
     }
 
-    public void eliminaEntrada(int id_entrada) {
+    public void eliminaProveedor(int id_proveedor) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "DELETE FROM Entradas WHERE id_entrada = ?";
+        String sql = "DELETE FROM Proveedores WHERE id_proveedor = ?";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id_entrada);
+            stmt.setInt(1, id_proveedor);
 
             int filas = stmt.executeUpdate();
 
             if (filas > 0) {
-                System.out.println("Entrada eliminada correctamente.");
+                System.out.println("Proveedor eliminado correctamente.");
             } else {
                 System.out.println("No se eliminó ninguna fila.");
             }
 
         } catch (SQLException e) {
-            System.err.println("Error al eliminar entrada: " + e.getMessage());
+            System.err.println("Error al eliminar proveedor: " + e.getMessage());
         } finally {
             try {
                 if (stmt != null) {
@@ -98,28 +98,27 @@ public class EntradasDAO {
         }
     }
 
-    public void actualizaEntrada(EntradasBean entrada) {
+    public void actualizaProveedor(ProveedoresBean proveedor) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "UPDATE Entradas SET id_producto = ?, numero_lote = ?, cantidad = ?, fecha = ?, id_usuario = ? WHERE id_entrada = ?";
+        String sql = "UPDATE Proveedores SET nombre = ?, contacto = ?, telefono = ?, correo = ? WHERE id_proveedor = ?";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, entrada.getId_producto());
-            stmt.setInt(2, entrada.getNumero_lote());
-            stmt.setDate(3, new java.sql.Date(entrada.getFecha().getTime()));
-            stmt.setInt(4, entrada.getCantidad());
-            stmt.setInt(5, entrada.getId_usuario());
-            stmt.setInt(6, entrada.getId_entrada());
+            stmt.setString(1, proveedor.getNombre());
+            stmt.setString(2, proveedor.getContacto());
+            stmt.setString(3, proveedor.getTelefono());
+            stmt.setString(4, proveedor.getCorreo());
+            stmt.setInt(5, proveedor.getId_proveedor());
 
             int filas = stmt.executeUpdate();
 
             if (filas > 0) {
-                System.out.println("Entrada actualizada correctamente.");
+                System.out.println("Proveedor actualizado correctamente.");
             } else {
                 System.out.println("No se actualizó ninguna fila.");
             }
@@ -140,14 +139,14 @@ public class EntradasDAO {
         }
     }
 
-    public List<EntradasBean> consultaEntradas() {
+    public List<ProveedoresBean> consultaProveedores() {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM Entradas";
-        List<EntradasBean> entradas = new ArrayList<>();
+        String sql = "SELECT * FROM Proveedores";
+        List<ProveedoresBean> proveedores = new ArrayList<>();
 
         try {
             conn = db.getConnection();
@@ -155,19 +154,18 @@ public class EntradasDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                EntradasBean entrada = new EntradasBean(
-                        rs.getInt("id_entrada"),
-                        rs.getInt("id_producto"),
-                        rs.getInt("numero_lote"),
-                        rs.getDate("fecha"),
-                        rs.getInt("cantidad"),
-                        rs.getInt("id_usuario")
+                ProveedoresBean proveedor = new ProveedoresBean(
+                        rs.getInt("id_proveedor"),
+                        rs.getString("nombre"),
+                        rs.getString("contacto"),
+                        rs.getString("telefono"),
+                        rs.getString("correo")
                 );
-                entradas.add(entrada);
+                proveedores.add(proveedor);
             }
-
+        
         } catch (SQLException e) {
-            System.err.println("Error al consultar entradas: " + e.getMessage());
+            System.err.println("Error al consultar proveedores: " + e.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -184,37 +182,37 @@ public class EntradasDAO {
             }
         }
 
-        return entradas;
+        return proveedores;
     }
 
-    public EntradasBean consultaEntrada(int id_entrada) {
+    public ProveedoresBean consultaProveedor(int id_proveedor) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        ProveedoresBean proveedor = null;
 
-        String sql = "SELECT * FROM Entradas WHERE id_entrada = ?";
-        EntradasBean entrada = null;
+        String sql = "SELECT * FROM Proveedores WHERE id_proveedor = ?";
+
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id_entrada);
+            stmt.setInt(1, id_proveedor);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                entrada = new EntradasBean(
-                        rs.getInt("id_entrada"),
-                        rs.getInt("id_producto"),
-                        rs.getInt("numero_lote"),
-                        rs.getDate("fecha"),
-                        rs.getInt("cantidad"),
-                        rs.getInt("id_usuario")
+                proveedor = new ProveedoresBean(
+                        rs.getInt("id_proveedor"),
+                        rs.getString("nombre"),
+                        rs.getString("contacto"),
+                        rs.getString("telefono"),
+                        rs.getString("correo")
                 );
             }
 
         } catch (SQLException e) {
-            System.err.println("Error al consultar entrada: " + e.getMessage());
+            System.err.println("Error al consultar proveedor: " + e.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -231,7 +229,7 @@ public class EntradasDAO {
             }
         }
 
-        return entrada;
+        return proveedor;
     }
 
 }
