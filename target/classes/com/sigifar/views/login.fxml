@@ -10,59 +10,54 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-    minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/login.css"
-    xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="com.sigifar.app.LoginController">
+<AnchorPane id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../styles/login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sigifar.app.LoginController">
     <children>
-        <ImageView id="imagePane" fitHeight="400.0" fitWidth="303.0" layoutX="328.0"
-            pickOnBounds="true" preserveRatio="true">
+        <!-- Imagen lateral -->
+        <ImageView id="imagePane" fitHeight="600.0" fitWidth="450.0" layoutX="450.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/rackdefarmacia%201.png" />
             </image>
         </ImageView>
-        <ImageView id="logoImage" fitHeight="64.0" fitWidth="319.0" layoutX="22.0" layoutY="23.0"
-            pickOnBounds="true" preserveRatio="true">
+
+        <!-- Logo -->
+        <ImageView id="logoImage" fitHeight="100.0" fitWidth="380.0" layoutX="35.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/image-removebg-preview%20(4)%201.png" />
             </image>
         </ImageView>
-        <Label id="titleLabel" layoutX="132.0" layoutY="96.0" stylesheets="@../styles/login.css"
-            text="Login">
+
+        <!-- Título -->
+        <Label id="titleLabel" layoutX="191.0" layoutY="151.0" stylesheets="@../styles/login.css" text="Login">
             <font>
-                <Font name="Informal Roman" size="34.0" />
+                <Font name="Informal Roman" size="42.0" />
             </font>
         </Label>
-        <TextField fx:id="tfLCorreo" layoutX="75.0" layoutY="192.0" promptText="Correo electrónico"
-            style="-fx-border-radius: 30;" styleClass="text-field"
-            stylesheets="@../styles/login.css">
+
+        <!-- Campo Correo -->
+        <Label layoutX="100.0" layoutY="256.0" styleClass="label" stylesheets="@../styles/login.css" text="Usuario" />
+        <TextField fx:id="tfLCorreo" layoutX="100.0" layoutY="281.0" prefWidth="250.0" promptText="Correo electrónico" style="-fx-border-radius: 30;" stylesheets="@../styles/login.css">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
 
-        <PasswordField fx:id="pfLContrasena" layoutX="75.0" layoutY="264.0" promptText="******"
-            style="-fx-border-radius: 30;" styleClass="password-field"
-            stylesheets="@../styles/login.css">
+        <!-- Campo Contraseña -->
+        <Label layoutX="100.0" layoutY="343.0" styleClass="label" stylesheets="@../styles/login.css" text="Contraseña" />
+        <PasswordField fx:id="pfLContrasena" layoutX="100.0" layoutY="368.0" prefWidth="250.0" promptText="******" style="-fx-border-radius: 30;" styleClass="password-field" stylesheets="@../styles/login.css">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </PasswordField>
 
-        <Label layoutX="75.0" layoutY="171.0" styleClass="label" stylesheets="@../styles/login.css"
-            text="Usuario" />
-        <Label layoutX="75.0" layoutY="246.0" styleClass="label" stylesheets="@../styles/login.css"
-            text="Contraseña" />
-
-        <Button fx:id="btnLogin" layoutX="80.0" layoutY="313.0" onAction="#login" prefHeight="15.0"
-            prefWidth="157.0" styleClass="icon-button">
-            <graphic>
-                <ImageView fitHeight="60" preserveRatio="true">
+        <!-- Botón -->
+        <Button fx:id="btnLogin" layoutX="119.0" layoutY="466.0" onAction="#login" prefHeight="20.0" prefWidth="180.0" styleClass="icon-button">
+         <graphic>
+                <ImageView fitHeight="70" preserveRatio="true">
                     <image>
                         <Image url="@../images/btn_login.png" />
                     </image>
                 </ImageView>
-            </graphic>
+         </graphic>
         </Button>
     </children>
 </AnchorPane>
