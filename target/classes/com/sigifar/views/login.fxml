@@ -10,54 +10,67 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../styles/login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sigifar.app.LoginController">
+<AnchorPane id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+    minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../styles/login.css"
+    xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.sigifar.app.LoginController">
     <children>
         <!-- Imagen lateral -->
-        <ImageView id="imagePane" fitHeight="600.0" fitWidth="450.0" layoutX="450.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView id="imagePane" fitHeight="600.0" fitWidth="450.0" layoutX="450.0"
+            pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/rackdefarmacia%201.png" />
             </image>
         </ImageView>
 
         <!-- Logo -->
-        <ImageView id="logoImage" fitHeight="100.0" fitWidth="380.0" layoutX="35.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView id="logoImage" fitHeight="100.0" fitWidth="380.0" layoutX="35.0" layoutY="40.0"
+            pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/image-removebg-preview%20(4)%201.png" />
             </image>
         </ImageView>
 
         <!-- Título -->
-        <Label id="titleLabel" layoutX="191.0" layoutY="151.0" stylesheets="@../styles/login.css" text="Login">
+        <Label id="titleLabel" layoutX="191.0" layoutY="151.0" stylesheets="@../styles/login.css"
+            text="Login">
             <font>
                 <Font name="Informal Roman" size="42.0" />
             </font>
         </Label>
 
         <!-- Campo Correo -->
-        <Label layoutX="100.0" layoutY="256.0" styleClass="label" stylesheets="@../styles/login.css" text="Usuario" />
-        <TextField fx:id="tfLCorreo" layoutX="100.0" layoutY="281.0" prefWidth="250.0" promptText="Correo electrónico" style="-fx-border-radius: 30;" stylesheets="@../styles/login.css">
+        <Label layoutX="100.0" layoutY="256.0" styleClass="label" stylesheets="@../styles/login.css"
+            text="Usuario" />
+        <TextField fx:id="tfLCorreo" layoutX="100.0" layoutY="281.0" prefWidth="250.0"
+            promptText="Correo electrónico" style="-fx-border-radius: 30;"
+            stylesheets="@../styles/login.css">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
 
         <!-- Campo Contraseña -->
-        <Label layoutX="100.0" layoutY="343.0" styleClass="label" stylesheets="@../styles/login.css" text="Contraseña" />
-        <PasswordField fx:id="pfLContrasena" layoutX="100.0" layoutY="368.0" prefWidth="250.0" promptText="******" style="-fx-border-radius: 30;" styleClass="password-field" stylesheets="@../styles/login.css">
+        <Label layoutX="100.0" layoutY="343.0" styleClass="label" stylesheets="@../styles/login.css"
+            text="Contraseña" />
+        <PasswordField fx:id="pfLContrasena" layoutX="100.0" layoutY="368.0" prefWidth="250.0"
+            promptText="******" style="-fx-border-radius: 30;" styleClass="password-field"
+            stylesheets="@../styles/login.css">
             <cursor>
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </PasswordField>
 
         <!-- Botón -->
-        <Button fx:id="btnLogin" layoutX="119.0" layoutY="466.0" onAction="#login" prefHeight="20.0" prefWidth="180.0" styleClass="icon-button">
-         <graphic>
+        <Button fx:id="btnLogin" layoutX="119.0" layoutY="466.0" onAction="#login" prefHeight="20.0"
+            prefWidth="180.0" styleClass="icon-button">
+            <graphic>
                 <ImageView fitHeight="70" preserveRatio="true">
                     <image>
                         <Image url="@../images/btn_login.png" />
                     </image>
                 </ImageView>
-         </graphic>
+            </graphic>
         </Button>
     </children>
 </AnchorPane>
