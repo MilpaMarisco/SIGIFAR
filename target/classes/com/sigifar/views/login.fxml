@@ -15,7 +15,6 @@
     xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
     fx:controller="com.sigifar.app.LoginController">
     <children>
-        <!-- Imagen lateral -->
         <ImageView id="imagePane" fitHeight="600.0" fitWidth="450.0" layoutX="450.0"
             pickOnBounds="true" preserveRatio="true">
             <image>
