@@ -45,7 +45,7 @@
             </cursor>
         </PasswordField>
 
-        <Button fx:id="btnLogin" layoutX="239.0" layoutY="568.0" onAction="#login" prefHeight="30.0" prefWidth="220.0" styleClass="icon-button">
+        <Button fx:id="btnLogin" layoutX="207.0" layoutY="569.0" onAction="#login" prefHeight="30.0" prefWidth="220.0" styleClass="icon-button">
             <graphic>
                 <ImageView fitHeight="91.0" fitWidth="241.0" preserveRatio="true" styleClass="icon-button">
                     <image>

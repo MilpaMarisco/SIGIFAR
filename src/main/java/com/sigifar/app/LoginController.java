@@ -51,7 +51,7 @@ public class LoginController {
         UsuariosBean usuario = usuariosDAO.login(correo, contrasena);
 
         if (usuario != null) {
-            //mostrarAlerta("Bienvenido", "Acceso exitoso, hola " + usuario.getNombres() + "!", Alert.AlertType.INFORMATION);
+            mostrarAlerta("Bienvenido", "Acceso exitoso, hola " + usuario.getNombres() + "!", Alert.AlertType.INFORMATION);
 
             try {
 
