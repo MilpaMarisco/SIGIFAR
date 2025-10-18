@@ -5,31 +5,43 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="menuPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/menuPrincipalAdmin.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sigifar.app.MenuPrincipalAdminController">
+<AnchorPane id="menuPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+    minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0"
+    stylesheets="@../styles/menuPrincipalAdmin.css" xmlns="http://javafx.com/javafx/25"
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sigifar.app.MenuPrincipalAdminController">
 
     <children>
-        <ImageView id="imagePane" fitHeight="720.0" fitWidth="537.0" layoutX="743.0" layoutY="-3.0" pickOnBounds="true">
+        <ImageView id="imagePane" fitHeight="720.0" fitWidth="537.0" layoutX="743.0" layoutY="-3.0"
+            pickOnBounds="true">
             <image>
                 <Image url="@../images/racks%201.png" />
             </image>
         </ImageView>
-        <Pane id="headerPane" prefHeight="91.0" prefWidth="1280.0">
+        <AnchorPane id="headerPane" prefHeight="91.0" prefWidth="1280.0">
             <children>
 
-                <ImageView id="logoImage" fitHeight="53.0" fitWidth="280.0" layoutX="69.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView id="logoImage" fitHeight="53.0" fitWidth="280.0" layoutX="69.0"
+                    layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/image-removebg-preview%20(4)%201.png" />
                     </image>
                 </ImageView>
 
-                <Label fx:id="lblNombreUsuario" layoutX="981.0" layoutY="19.0" styleClass="label" stylesheets="@../styles/menuPrincipalAdmin.css" text="Usuario" />
-                <Label fx:id="lblCorreoUsuario" layoutX="981.0" layoutY="44.0" styleClass="label" stylesheets="@../styles/menuPrincipalAdmin.css" text="correo" />
+                <Label fx:id="lblNombreUsuario" alignment="CENTER_RIGHT" layoutX="1120.2"
+                    layoutY="20.0" styleClass="label" text="usuario"
+                    AnchorPane.rightAnchor="104.59999999999991" AnchorPane.topAnchor="20.0" />
 
-                <Button fx:id="btnDatosUsuario" layoutX="1200.0" layoutY="20.0" prefHeight="51.0" prefWidth="49.0" styleClass="icon-button" stylesheets="@../styles/menuPrincipalAdmin.css">
+                <Label fx:id="lblCorreoUsuario" alignment="CENTER_RIGHT"
+                    layoutX="1125.8000000000002" layoutY="44.8" styleClass="label" text="correo"
+                    AnchorPane.rightAnchor="104.59999999999991" AnchorPane.topAnchor="44.8" />
+
+                <Button fx:id="btnDatosUsuario" layoutX="1200.0" layoutY="20.0" prefHeight="51.0"
+                    prefWidth="49.0" styleClass="icon-button"
+                    stylesheets="@../styles/menuPrincipalAdmin.css">
                     <graphic>
-                        <ImageView fitHeight="44.0" fitWidth="46.0" preserveRatio="true" styleClass="icon-button">
+                        <ImageView fitHeight="44.0" fitWidth="46.0" preserveRatio="true"
+                            styleClass="icon-button">
                             <image>
                                 <Image url="@../images/image%202.png" />
                             </image>
@@ -37,6 +49,18 @@
                     </graphic>
                 </Button>
             </children>
-        </Pane>
+        </AnchorPane>
+        <Button fx:id="btnCerrarSesion" layoutX="979.0" layoutY="601.0" prefHeight="83.0"
+            prefWidth="265.0" onAction="#cerrarSesion" styleClass="icon-button"
+            stylesheets="@../styles/menuPrincipalAdmin.css">
+            <graphic>
+                <ImageView fitHeight="83.0" fitWidth="265.0" preserveRatio="true"
+                    styleClass="icon-button">
+                    <image>
+                        <Image url="@../images/Frame%205.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
     </children>
 </AnchorPane>

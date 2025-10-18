@@ -24,9 +24,10 @@
 .label {
   -fx-text-fill: #000000;
   -fx-font-size: 16px;
-  font-weight: common;
+  -fx-font-weight: common;
   -fx-padding: 3 0 3 3;
-  -fx-align-self: end;
+  -fx-alignment: center-right;
+  -fx-text-alignment: right;
 }
 
 /* ======== Botón cerrar sesión ======== */

@@ -45,7 +45,7 @@ public class MenuPrincipalAdminController {
 
     @FXML
     private void cerrarSesion(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/login.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
