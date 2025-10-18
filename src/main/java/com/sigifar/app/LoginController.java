@@ -54,15 +54,29 @@ public class LoginController {
             mostrarAlerta("Bienvenido", "Acceso exitoso, hola " + usuario.getNombres() + "!", Alert.AlertType.INFORMATION);
 
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/menuPrincipalAdmin.fxml"));
-                Parent root = loader.load();
 
-                MenuPrincipalAdminController controller = loader.getController();
-                controller.setUsuarioActual(usuario);
+                if (usuario.getRol().equals("normal")) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/menuPrincipalNormal.fxml"));
+                    Parent root = loader.load();
 
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
+                    MenuPrincipalNormalController controller = loader.getController();
+                    controller.setUsuarioActual(usuario);
+
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+
+                } else {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/menuPrincipalAdmin.fxml"));
+                    Parent root = loader.load();
+
+                    MenuPrincipalAdminController controller = loader.getController();
+                    controller.setUsuarioActual(usuario);
+
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                }
 
             } catch (IOException e) {
                 mostrarAlerta("Error", "No se pudo cargar el menú principal." + e.getMessage(), Alert.AlertType.ERROR);
