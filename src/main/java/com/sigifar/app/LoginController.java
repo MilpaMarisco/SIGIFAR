@@ -5,13 +5,21 @@
 package com.sigifar.app;
 
 import com.sigifar.dao.UsuariosDAO;
+
+import java.io.IOException;
+
 import com.sigifar.beans.UsuariosBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  *
@@ -44,8 +52,22 @@ public class LoginController {
 
         if (usuario != null) {
             mostrarAlerta("Bienvenido", "Acceso exitoso, hola " + usuario.getNombres() + "!", Alert.AlertType.INFORMATION);
-            // TODO: navegar a la siguiente pantalla
-            // App.setRoot("menuPrincipal");
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/menuPrincipalAdmin.fxml"));
+                Parent root = loader.load();
+
+                MenuPrincipalAdminController controller = loader.getController();
+                controller.setUsuarioActual(usuario);
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+            } catch (IOException e) {
+                mostrarAlerta("Error", "No se pudo cargar el menú principal." + e.getMessage(), Alert.AlertType.ERROR);
+            }
+
         } else {
             mostrarAlerta("Error de autenticación", "Correo o contraseña incorrectos.", Alert.AlertType.ERROR);
         }
