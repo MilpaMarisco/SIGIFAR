@@ -19,7 +19,7 @@
 
 /* ======== Logo ======== */
 #logoImage {
-  -fx-effect: dropshadow(gaussian, rgba(0, 180, 255, 0.6), 18, 0.4, 0, 6);
+  -fx-effect: dropshadow(gaussian, rgba(0, 115, 164, 0.6), 18, 0.4, 0, 6);
   -fx-opacity: 0.95;
 }
 
