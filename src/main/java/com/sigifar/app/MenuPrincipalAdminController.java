@@ -5,8 +5,10 @@
 package com.sigifar.app;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import com.sigifar.beans.UsuariosBean;
+import com.sigifar.util.Sesion;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,11 +20,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import javafx.fxml.Initializable;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 /**
  *
  * @author amilp
  */
-public class MenuPrincipalAdminController {
+public class MenuPrincipalAdminController implements Initializable{
 
     @FXML
     private Label lblNombreUsuario;
@@ -30,30 +36,22 @@ public class MenuPrincipalAdminController {
     @FXML
     private Label lblCorreoUsuario;
 
-    private UsuariosBean usuarioActual;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        UsuariosBean usuario = Sesion.getUsuarioActual();
 
-    public void setUsuarioActual(UsuariosBean usuario) {
-        this.usuarioActual = usuario;
-        mostrarDatosUsuario();
-    }
-
-    private void mostrarDatosUsuario() {
-        if (usuarioActual != null) {
-            lblNombreUsuario.setText(usuarioActual.getNombres() + " " + usuarioActual.getApellidos());
-            lblCorreoUsuario.setText(usuarioActual.getCorreo());
+        if (usuario != null) {
+            lblNombreUsuario.setText(usuario.getNombres() + " " + usuario.getApellidos());
+            lblCorreoUsuario.setText(usuario.getCorreo());
         }
     }
 
     @FXML
     private void entrada(ActionEvent event) {
-
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/entradaProducto.fxml"));
             Parent root = loader.load();
-
-            EntradaProductoController controller = loader.getController();
-            controller.setUsuarioActual(usuario);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -66,6 +64,8 @@ public class MenuPrincipalAdminController {
 
     @FXML
     private void cerrarSesion(ActionEvent event) throws IOException {
+        Sesion.cerrarSesion();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/login.fxml"));
         Parent root = loader.load();
 

@@ -4,16 +4,23 @@
  */
 package com.sigifar.app;
 
+import java.util.ResourceBundle;
+
 import com.sigifar.beans.UsuariosBean;
+import com.sigifar.util.Sesion;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+
+import javafx.fxml.Initializable;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  *
  * @author amilp
  */
-public class EntradaProductoController {
+public class EntradaProductoController implements Initializable {
 
     @FXML
     private Label lblNombreUsuario;
@@ -21,17 +28,14 @@ public class EntradaProductoController {
     @FXML
     private Label lblCorreoUsuario;
 
-    private UsuariosBean usuarioActual;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        UsuariosBean usuario = Sesion.getUsuarioActual();
 
-    public void setUsuarioActual(UsuariosBean usuario) {
-        this.usuarioActual = usuario;
-        mostrarDatosUsuario();
-    }
-
-    private void mostrarDatosUsuario() {
-        if (usuarioActual != null) {
-            lblNombreUsuario.setText(usuarioActual.getNombres() + " " + usuarioActual.getApellidos());
-            lblCorreoUsuario.setText(usuarioActual.getCorreo());
+        if (usuario != null) {
+            lblNombreUsuario.setText(usuario.getNombres() + " " + usuario.getApellidos());
+            lblCorreoUsuario.setText(usuario.getCorreo());
         }
     }
+
 }

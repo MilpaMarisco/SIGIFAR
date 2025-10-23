@@ -62,7 +62,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="btnEntradaProducto" layoutX="66.0" layoutY="123.0" prefHeight="152.0"
+        <Button fx:id="btnEntradaProducto" layoutX="66.0" layoutY="123.0" onAction="#entrada" prefHeight="152.0"
             prefWidth="259.0" styleClass="icon-button"
             stylesheets="@../styles/menuPrincipalAdmin.css">
             <graphic>

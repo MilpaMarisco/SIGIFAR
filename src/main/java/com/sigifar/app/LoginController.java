@@ -5,6 +5,7 @@
 package com.sigifar.app;
 
 import com.sigifar.dao.UsuariosDAO;
+import com.sigifar.util.Sesion;
 
 import java.io.IOException;
 
@@ -53,14 +54,13 @@ public class LoginController {
         if (usuario != null) {
             mostrarAlerta("Bienvenido", "Acceso exitoso, hola " + usuario.getNombres() + "!", Alert.AlertType.INFORMATION);
 
+            Sesion.setUsuarioActual(usuario);
+
             try {
 
                 if (usuario.getRol().equals("normal")) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/menuPrincipalNormal.fxml"));
                     Parent root = loader.load();
-
-                    MenuPrincipalNormalController controller = loader.getController();
-                    controller.setUsuarioActual(usuario);
 
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(new Scene(root));
@@ -69,9 +69,6 @@ public class LoginController {
                 } else {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/menuPrincipalAdmin.fxml"));
                     Parent root = loader.load();
-
-                    MenuPrincipalAdminController controller = loader.getController();
-                    controller.setUsuarioActual(usuario);
 
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(new Scene(root));
