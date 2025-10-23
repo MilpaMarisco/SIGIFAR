@@ -21,8 +21,11 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import javafx.fxml.Initializable;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.sigifar.util.Utils;
 
 /**
  *
@@ -58,7 +61,7 @@ public class MenuPrincipalAdminController implements Initializable{
             stage.show();
 
         } catch (IOException e) {
-            mostrarAlerta("Error", "No se pudo cargar la entrada de productos." + e.getMessage(), Alert.AlertType.ERROR);
+            Utils.mostrarAlerta("Error", "No se pudo cargar la entrada de productos." + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -74,12 +77,6 @@ public class MenuPrincipalAdminController implements Initializable{
         stage.show();
     }
 
-    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
+    
 
 }

@@ -78,7 +78,7 @@ public class EntradaProductoController implements Initializable {
 
             Utils.mostrarAlerta("Entrada registrada", "La entrada del producto se ha registrado exitosamente.", Alert.AlertType.INFORMATION);
         } catch (Exception e) {
-            Utils.mostrarAlerta("Error al insertar entrada", "Ocurrió un error al insertar la entrada del producto", Alert.AlertType.ERROR);
+            Utils.mostrarAlerta("Error", "Ocurrió un error al insertar la entrada del producto", Alert.AlertType.ERROR);
         }
 
     }

@@ -10,6 +10,8 @@ import com.sigifar.util.Sesion;
 import java.io.IOException;
 
 import com.sigifar.beans.UsuariosBean;
+import com.sigifar.util.Utils;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,14 +47,14 @@ public class LoginController {
         String contrasena = pfLContrasena.getText().trim();
 
         if (correo.isEmpty() || contrasena.isEmpty()) {
-            mostrarAlerta("Campos vacíos", "Por favor, ingresa tu correo y contraseña.", Alert.AlertType.WARNING);
+            Utils.mostrarAlerta("Campos vacíos", "Por favor, ingresa tu correo y contraseña.", Alert.AlertType.WARNING);
             return;
         }
 
         UsuariosBean usuario = usuariosDAO.login(correo, contrasena);
 
         if (usuario != null) {
-            mostrarAlerta("Bienvenido", "Acceso exitoso, hola " + usuario.getNombres() + "!", Alert.AlertType.INFORMATION);
+            Utils.mostrarAlerta("Bienvenido", "Acceso exitoso, hola " + usuario.getNombres() + "!", Alert.AlertType.INFORMATION);
 
             Sesion.setUsuarioActual(usuario);
 
@@ -76,19 +78,13 @@ public class LoginController {
                 }
 
             } catch (IOException e) {
-                mostrarAlerta("Error", "No se pudo cargar el menú principal." + e.getMessage(), Alert.AlertType.ERROR);
+                Utils.mostrarAlerta("Error", "No se pudo cargar el menú principal." + e.getMessage(), Alert.AlertType.ERROR);
             }
 
         } else {
-            mostrarAlerta("Error de autenticación", "Correo o contraseña incorrectos.", Alert.AlertType.ERROR);
+            Utils.mostrarAlerta("Error de autenticación", "Correo o contraseña incorrectos.", Alert.AlertType.ERROR);
         }
     }
 
-    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
+
 }
