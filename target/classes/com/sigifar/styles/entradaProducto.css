@@ -6,7 +6,7 @@
 }
 
 /* ======== Contenedor principal ======== */
-#loginPane {
+#entradaPane {
   -fx-background-color: linear-gradient(to bottom right, #1c1c1c, #262626);
   -fx-background-radius: 25;
   -fx-padding: 70 60;
@@ -17,28 +17,38 @@
   -fx-transition: all 0.3s ease-in-out;
 }
 
+#headerPane {
+  -fx-background-color: linear-gradient(to bottom right, #D9D9D9, #ffffff);
+  -fx-background-radius: 10;
+  -fx-border-radius: 0;
+  -fx-transition: all 0.3s ease-in-out;
+}
+
 /* ======== Logo ======== */
 #logoImage {
-  -fx-effect: dropshadow(gaussian, rgba(0, 115, 164, 0.6), 18, 0.4, 0, 6);
+  -fx-effect: dropshadow(gaussian, rgba(181, 231, 252, 0.814), 18, 0.4, 0, 6);
   -fx-opacity: 0.95;
 }
 
-/* ======== Título Login ======== */
+
+/* ======== Título Entrada ======== */
 #titleLabel {
-  -fx-font-size: 50px;
+  -fx-font-size: 35px;
   -fx-text-fill: linear-gradient(to right, #00c3ff, #29abe2);
   -fx-font-weight: bold;
   -fx-padding: 10 0 35 0;
   -fx-effect: dropshadow(gaussian, rgba(0, 200, 255, 0.4), 15, 0.3, 0, 0);
-  -fx-letter-spacing: 1.5px;
+  -fx-letter-spacing: 0%;
+  -fx-alignment: center;
+  -fx-text-alignment: center;
 }
 
 /* ======== Labels ======== */
 .label {
-  -fx-text-fill: #d0d0d0;
+  -fx-text-fill: #000000;
   -fx-font-size: 16px;
-  -fx-font-weight: 600;
-  -fx-padding: 5 0 5 0;
+  -fx-font-weight: common;
+  -fx-padding: 3 0 3 3;
 }
 
 /* ======== Campos de texto ======== */
@@ -87,7 +97,7 @@
 #btnBack {
   -fx-background-color: transparent;
   -fx-cursor: hand;
-  -fx-opacity: 0.85;
+  -fx-opacity: 1;
   -fx-graphic: url("../icons/back.png");
   -fx-background-radius: 10;
   -fx-padding: 6;
@@ -95,40 +105,32 @@
 }
 #btnBack:hover {
   -fx-opacity: 1;
-  -fx-effect: dropshadow(gaussian, rgba(0, 170, 255, 0.5), 12, 0.3, 0, 0);
+  -fx-effect: dropshadow(gaussian, rgba(0, 200, 255, 0.5), 12, 0.3, 0, 0);
   -fx-translate-x: -2;
+}
+
+#btnCancelar {
+  -fx-background-color: transparent;
+  -fx-cursor: hand;
+  -fx-padding: 6;
+  -fx-scale-x: 1;
+  -fx-scale-y: 1;
+  -fx-opacity: 0.95;
+  -fx-transition: all 0.2s ease-in-out;
+}
+#btnCancelar:hover {
+  -fx-opacity: 1;
+  -fx-scale-x: 1.08;
+  -fx-scale-y: 1.08;
+  -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.914), 10, 0.3, 0, 0);
+}
+#btnCancelar:pressed {
+  -fx-opacity: 0.75;
+  -fx-scale-x: 0.96;
+  -fx-scale-y: 0.96;
 }
 
 /* ======== Imagen lateral ======== */
 #imagePane {
   -fx-background-color: transparent;
-}
-.image-view {
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 20, 0.4, 0, 0);
-  -fx-background-radius: 16;
-  -fx-border-radius: 16;
-  -fx-opacity: 0.95;
-  -fx-transition: all 0.25s ease-in-out;
-}
-
-/* ======== Botón de acción secundaria ======== */
-.button {
-  -fx-background-color: transparent;
-  -fx-text-fill: white;
-  -fx-font-size: 16px;
-  -fx-font-weight: bold;
-  -fx-background-radius: 12;
-  -fx-padding: 10 20;
-  -fx-cursor: hand;
-  -fx-effect: dropshadow(gaussian, rgba(0, 170, 255, 0.4), 10, 0.3, 0, 2);
-  -fx-transition: all 0.25s ease-in-out;
-}
-.button:hover {
-  -fx-background-color: transparent;
-  -fx-effect: dropshadow(gaussian, rgba(0, 230, 255, 0.6), 12, 0.4, 0, 3);
-}
-.button:pressed {
-  -fx-background-color: transparent;
-  -fx-scale-x: 0.97;
-  -fx-scale-y: 0.97;
 }
