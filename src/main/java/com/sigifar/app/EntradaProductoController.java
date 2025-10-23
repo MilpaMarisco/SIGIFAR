@@ -21,7 +21,9 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.sigifar.beans.EntradasBean;
+import com.sigifar.beans.ProductosBean;
 import com.sigifar.dao.EntradasDAO;
+import com.sigifar.dao.ProductosDAO;
 import com.sigifar.util.Utils;
 
 /**
@@ -37,7 +39,7 @@ public class EntradaProductoController implements Initializable {
     private Label lblCorreoUsuario;
 
     @FXML
-    private TextField tfEpCodigo;
+    private TextField tfEPClave;
 
     @FXML
     private TextField tfEPLote;
@@ -60,18 +62,20 @@ public class EntradaProductoController implements Initializable {
 
         UsuariosBean usuario = Sesion.getUsuarioActual();
 
-        int id_producto = Integer.parseInt(tfEpCodigo.getText());
-        int numero_lote = Integer.parseInt(tfEPLote.getText());
-        int cantidad = Integer.parseInt(tfEPCantidad.getText());
+        String clave_producto = tfEPClave.getText().trim();
+        int numero_lote = Integer.parseInt(tfEPLote.getText().trim());
+        int cantidad = Integer.parseInt(tfEPCantidad.getText().trim());
         Date fecha = new Date();
 
-        if (id_producto <= 0 || numero_lote <= 0 || cantidad <= 0) {
+        if (clave_producto == null || numero_lote <= 0 || cantidad <= 0) {
             Utils.mostrarAlerta("Campos inválidos", "Por favor, ingresa valores válidos para todos los campos.", Alert.AlertType.WARNING);
             return;
         }
 
         try {
-            EntradasBean entrada = new EntradasBean(id_producto, numero_lote, fecha, cantidad, usuario.getId_usuario());
+            ProductosBean productosBean = ProductosDAO.consultaProducto(clave_producto);
+
+            EntradasBean entrada = new EntradasBean(productosBean.getId_producto(), numero_lote, fecha, cantidad, usuario.getId_usuario());
 
             EntradasDAO entradasDAO = new EntradasDAO();
             entradasDAO.insertaEntrada(entrada);

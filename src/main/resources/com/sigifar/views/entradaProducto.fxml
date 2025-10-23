@@ -82,9 +82,9 @@
             </font>
         </Label>
         <Label layoutX="147.0" layoutY="261.0" styleClass="label" stylesheets="@../styles/login.css"
-            text="Código del producto" />
-        <TextField fx:id="tfEpCodigo" layoutX="147.0" layoutY="286.0" prefWidth="350.0"
-            promptText="Código del producto" style="-fx-border-radius: 30;" styleClass="text-field"
+            text="Clave del producto" />
+        <TextField fx:id="tfEPClave" layoutX="147.0" layoutY="286.0" prefWidth="350.0"
+            promptText="Clave del producto" style="-fx-border-radius: 30;" styleClass="text-field"
             stylesheets="@../styles/login.css">
             <cursor>
                 <Cursor fx:constant="TEXT" />

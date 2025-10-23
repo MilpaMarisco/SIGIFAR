@@ -199,7 +199,7 @@ public class ProductosDAO {
         return productos;
     }
 
-    public ProductosBean consultaProducto(int clave_producto) {
+    public static ProductosBean consultaProducto(String clave_producto) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -211,7 +211,7 @@ public class ProductosDAO {
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, clave_producto);
+            stmt.setString(1, clave_producto);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
