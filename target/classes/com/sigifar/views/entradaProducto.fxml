@@ -119,7 +119,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button id="btnAceptar" fx:id="btnAceptar" layoutX="210.0" layoutY="591.0" prefHeight="64.0"
+        <Button id="btnAceptar" fx:id="btnAceptar" layoutX="210.0" layoutY="591.0" prefHeight="64.0" onAction="#aceptar"
             prefWidth="64.0" styleClass="icon-button"
             stylesheets="@../styles/menuPrincipalAdmin.css">
             <graphic>

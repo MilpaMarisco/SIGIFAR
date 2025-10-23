@@ -34,8 +34,8 @@ public class EntradasDAO {
 
             stmt.setInt(1, entrada.getId_producto());
             stmt.setInt(2, entrada.getNumero_lote());
-            stmt.setDate(3, new java.sql.Date(entrada.getFecha().getTime()));
-            stmt.setInt(4, entrada.getCantidad());
+            stmt.setInt(3, entrada.getCantidad());
+            stmt.setDate(4, new java.sql.Date(entrada.getFecha().getTime()));
             stmt.setInt(5, entrada.getId_usuario());
 
             int filas = stmt.executeUpdate();
