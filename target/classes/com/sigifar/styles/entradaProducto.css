@@ -122,7 +122,7 @@
   -fx-opacity: 1;
   -fx-scale-x: 1.08;
   -fx-scale-y: 1.08;
-  -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.914), 10, 0.3, 0, 0);
+  -fx-effect: dropshadow(gaussian, rgb(255, 0, 0), 10, 0.3, 0, 0);
 }
 #btnCancelar:pressed {
   -fx-opacity: 0.75;
