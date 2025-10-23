@@ -10,11 +10,19 @@ import com.sigifar.beans.UsuariosBean;
 import com.sigifar.util.Sesion;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.fxml.Initializable;
+
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
+
+import com.sigifar.beans.EntradasBean;
+import com.sigifar.dao.EntradasDAO;
+import com.sigifar.util.Utils;
 
 /**
  *
@@ -28,6 +36,15 @@ public class EntradaProductoController implements Initializable {
     @FXML
     private Label lblCorreoUsuario;
 
+    @FXML
+    private TextField tfEpCodigo;
+
+    @FXML
+    private TextField tfEPLote;
+
+    @FXML
+    private TextField tfEPCantidad;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         UsuariosBean usuario = Sesion.getUsuarioActual();
@@ -36,6 +53,34 @@ public class EntradaProductoController implements Initializable {
             lblNombreUsuario.setText(usuario.getNombres() + " " + usuario.getApellidos());
             lblCorreoUsuario.setText(usuario.getCorreo());
         }
+    }
+
+    @FXML
+    public void aceptar() {
+
+        UsuariosBean usuario = Sesion.getUsuarioActual();
+
+        int id_producto = Integer.parseInt(tfEpCodigo.getText());
+        int numero_lote = Integer.parseInt(tfEPLote.getText());
+        int cantidad = Integer.parseInt(tfEPCantidad.getText());
+        Date fecha = new Date();
+
+        if (id_producto <= 0 || numero_lote <= 0 || cantidad <= 0) {
+            Utils.mostrarAlerta("Campos inválidos", "Por favor, ingresa valores válidos para todos los campos.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        try {
+            EntradasBean entrada = new EntradasBean(id_producto, numero_lote, fecha, cantidad, usuario.getId_usuario());
+
+            EntradasDAO entradasDAO = new EntradasDAO();
+            entradasDAO.insertaEntrada(entrada);
+
+            Utils.mostrarAlerta("Entrada registrada", "La entrada del producto se ha registrado exitosamente.", Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            Utils.mostrarAlerta("Error al insertar entrada", "Ocurrió un error al insertar la entrada del producto", Alert.AlertType.ERROR);
+        }
+
     }
 
 }

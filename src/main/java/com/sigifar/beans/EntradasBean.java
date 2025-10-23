@@ -28,6 +28,14 @@ public class EntradasBean {
         this.id_usuario = id_usuario;
     }
 
+    public EntradasBean( int id_producto, int numero_lote, Date fecha, int cantidad, int id_usuario) {
+        this.id_producto = id_producto;
+        this.numero_lote = numero_lote;
+        this.fecha = fecha;
+        this.cantidad = cantidad;
+        this.id_usuario = id_usuario;
+    }
+
     public int getId_entrada() {
         return id_entrada;
     }
