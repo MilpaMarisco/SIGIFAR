@@ -116,7 +116,7 @@ public class SalidaProductoController implements Initializable {
                 return;
             }
 
-            // Obtener lotes del producto, ordenados por caducidad y llegada (FIFO)
+            
             List<LotesBean> lotes = lotesDAO.consultaLotesFIFO(producto.getId_producto());
 
             if (lotes == null || lotes.isEmpty()) {
@@ -142,13 +142,12 @@ public class SalidaProductoController implements Initializable {
 
                 int cantidadASacar = Math.min(cantidadPendiente, disponible);
 
-                // Registrar salida
                 SalidasBean salida = new SalidasBean(
                         lote.getId_lote(),
                         cantidadASacar,
                         fechaSalida,
                         destino,
-                        usuario.getId_usuario(), // ID de transporte por defecto
+                        usuario.getId_usuario(), 
                         transporteSeleccionado != null ? cbTransporte.getSelectionModel().getSelectedIndex() + 1 : 0
                 );
                 salidasDAO.insertaSalida(salida);
