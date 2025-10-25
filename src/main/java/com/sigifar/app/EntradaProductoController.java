@@ -28,8 +28,10 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.sigifar.beans.EntradasBean;
+import com.sigifar.beans.LotesBean;
 import com.sigifar.beans.ProductosBean;
 import com.sigifar.dao.EntradasDAO;
+import com.sigifar.dao.LotesDAO;
 import com.sigifar.dao.ProductosDAO;
 import com.sigifar.util.Utils;
 
@@ -69,12 +71,21 @@ public class EntradaProductoController implements Initializable {
 
         UsuariosBean usuario = Sesion.getUsuarioActual();
         ProductosDAO productosDAO = new ProductosDAO();
+        LotesDAO lotesDAO = new LotesDAO();
+
         String clave_producto = tfEPClave.getText().trim();
-        int numero_lote = Integer.parseInt(tfEPLote.getText().trim());
-        int cantidad = Integer.parseInt(tfEPCantidad.getText().trim());
+        String numero_lote = tfEPLote.getText().trim();
+        int cantidad;
         Date fecha = new Date();
 
-        if (clave_producto == null || numero_lote <= 0 || cantidad <= 0) {
+        try {
+            cantidad = Integer.parseInt(tfEPCantidad.getText().trim());
+        } catch (NumberFormatException e) {
+            Utils.mostrarAlerta("Campo inválido", "La cantidad debe ser un número válido.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        if (clave_producto == null || numero_lote == null || cantidad <= 0) {
             Utils.mostrarAlerta("Campos inválidos", "Por favor, ingresa valores válidos para todos los campos.", Alert.AlertType.WARNING);
             return;
         }
@@ -87,13 +98,23 @@ public class EntradaProductoController implements Initializable {
                 return;
             }
 
-            EntradasBean entrada = new EntradasBean(numero_lote, cantidad, fecha, usuario.getId_usuario());
+            LotesBean lote = lotesDAO.consultaLotePK(numero_lote, productosBean.getId_producto());
 
-            //se inserta la entrada de productos a la base
+            if (lote == null) {
+                lote = new LotesBean(productosBean.getId_producto(), numero_lote, null);
+
+                lotesDAO.insertaLote(lote);
+
+                lote = lotesDAO.consultaLotePK(numero_lote, productosBean.getId_producto());
+            }
+
+            EntradasBean entrada = new EntradasBean(lote.getId_lote(), cantidad, fecha, usuario.getId_usuario());
+
             EntradasDAO entradasDAO = new EntradasDAO();
             entradasDAO.insertaEntrada(entrada);
 
             Utils.mostrarAlerta("Entrada registrada", "La entrada del producto se ha registrado exitosamente.", Alert.AlertType.INFORMATION);
+
         } catch (Exception e) {
             Utils.mostrarAlerta("Error", "Ocurrió un error al insertar la entrada del producto", Alert.AlertType.ERROR);
         }

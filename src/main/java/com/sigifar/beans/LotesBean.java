@@ -10,15 +10,21 @@ import java.util.Date;
  *
  * @author amilp
  */
-public class LoteBean {
+public class LotesBean {
 
     private int id_lote;
     private int id_producto;
     private String numero_lote;
     private Date fecha_caducidad;
 
-    public LoteBean(int id_lote, int id_producto, String numero_lote, Date fecha_caducidad) {
+    public LotesBean(int id_lote, int id_producto, String numero_lote, Date fecha_caducidad) {
         this.id_lote = id_lote;
+        this.id_producto = id_producto;
+        this.numero_lote = numero_lote;
+        this.fecha_caducidad = fecha_caducidad;
+    }
+
+    public LotesBean(int id_producto, String numero_lote, Date fecha_caducidad) {
         this.id_producto = id_producto;
         this.numero_lote = numero_lote;
         this.fecha_caducidad = fecha_caducidad;

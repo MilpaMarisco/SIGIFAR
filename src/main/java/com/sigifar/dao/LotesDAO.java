@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sigifar.beans.LoteBean;
+import com.sigifar.beans.LotesBean;
 import com.sigifar.beans.SalidasBean;
 import com.sigifar.util.DBConnection;
 
-public class LoteDAO {
+public class LotesDAO {
 
-    public void insertaLote(LoteBean lote) {
+    public void insertaLote(LotesBean lote) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -89,7 +89,7 @@ public class LoteDAO {
         }
     }
 
-    public void actualizaLote(LoteBean lote) {
+    public void actualizaLote(LotesBean lote) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -129,14 +129,14 @@ public class LoteDAO {
         }
     }
 
-    public List<LoteBean> consultaLotes() {
+    public List<LotesBean> consultaLotes() {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         String sql = "SELECT * FROM Lotes";
-        List<LoteBean> lotes = new ArrayList<>();
+        List<LotesBean> lotes = new ArrayList<>();
 
         try {
             conn = db.getConnection();
@@ -144,7 +144,7 @@ public class LoteDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                LoteBean lote = new LoteBean(
+                LotesBean lote = new LotesBean(
                         rs.getInt("id_lote"),
                         rs.getInt("id_producto"),
                         rs.getString("numero_lote"),
@@ -172,14 +172,14 @@ public class LoteDAO {
         return lotes;
     }
 
-    public LoteBean consultaLote(String numero_lote) {
+    public LotesBean consultaLote(String numero_lote) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         String sql = "SELECT * FROM Lotes WHERE numero_lote = ?";
-        LoteBean lote = null;
+        LotesBean lote = null;
 
         try {
             conn = db.getConnection();
@@ -188,7 +188,7 @@ public class LoteDAO {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                lote = new LoteBean(
+                lote = new LotesBean(
                         rs.getInt("id_lote"),
                         rs.getInt("id_producto"),
                         rs.getString("numero_lote"),
@@ -216,14 +216,14 @@ public class LoteDAO {
         return lote;
     }
 
-    public LoteBean consultaLotePK(String numero_lote, int id_producto) {
+    public LotesBean consultaLotePK(String numero_lote, int id_producto) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         String sql = "SELECT * FROM Lotes WHERE numero_lote = ? AND id_producto = ?";
-        LoteBean lote = null;
+        LotesBean lote = null;
 
         try {
             conn = db.getConnection();
@@ -233,7 +233,7 @@ public class LoteDAO {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                lote = new LoteBean(
+                lote = new LotesBean(
                         rs.getInt("id_lote"),
                         rs.getInt("id_producto"),
                         rs.getString("numero_lote"),
