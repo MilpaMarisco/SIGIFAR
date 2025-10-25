@@ -7,21 +7,17 @@ public class ProductosBean {
     private String nombre;
     private String marca;
     private String presentacion;
-    private String numero_lote;
     private int cantidad;
-    private String fecha_caducidad;
     private int id_proveedor;
     private int id_ubicacion;
 
-    public ProductosBean(int id_producto, String clave_producto, String nombre, String marca, String presentacion, String numero_lote, int cantidad, String fecha_caducidad, int id_proveedor, int id_ubicacion) {
+    public ProductosBean(int id_producto, String clave_producto, String nombre, String marca, String presentacion, int cantidad, int id_proveedor, int id_ubicacion) {
         this.id_producto = id_producto;
         this.clave_producto = clave_producto;
         this.nombre = nombre;
         this.marca = marca;
         this.presentacion = presentacion;
-        this.numero_lote = numero_lote;
         this.cantidad = cantidad;
-        this.fecha_caducidad = fecha_caducidad;
         this.id_proveedor = id_proveedor;
         this.id_ubicacion = id_ubicacion;
     }
@@ -66,28 +62,12 @@ public class ProductosBean {
         this.presentacion = presentacion;
     }
 
-    public String getNumero_lote() {
-        return numero_lote;
-    }
-
-    public void setNumero_lote(String numero_lote) {
-        this.numero_lote = numero_lote;
-    }
-
     public int getCantidad() {
         return cantidad;
     }
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public String getFecha_caducidad() {
-        return fecha_caducidad;
-    }
-
-    public void setFecha_caducidad(String fecha_caducidad) {
-        this.fecha_caducidad = fecha_caducidad;
     }
 
     public int getId_proveedor() {
@@ -108,8 +88,8 @@ public class ProductosBean {
 
     @Override
     public String toString() {
-        return "id_producto=" + id_producto + ", clave_producto=" + clave_producto + ", nombre=" + nombre + ", marca=" + marca + ", presentacion=" + presentacion + ", numero_lote=" + numero_lote + ", cantidad=" + cantidad
-                + ", fecha_caducidad=" + fecha_caducidad + ", id_proveedor=" + id_proveedor + ", id_ubicacion=" + id_ubicacion;
+        return "id_producto=" + id_producto + ", clave_producto=" + clave_producto + ", nombre=" + nombre + ", marca=" + marca + ", presentacion=" + presentacion + ", cantidad=" + cantidad
+                + ", id_proveedor=" + id_proveedor + ", id_ubicacion=" + id_ubicacion;
     }
 
 }

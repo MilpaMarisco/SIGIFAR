@@ -13,26 +13,23 @@ import java.util.Date;
 public class EntradasBean {
 
     private int id_entrada;
-    private int id_producto;
-    private int numero_lote;
-    private Date fecha;
+    private int id_lote;
     private int cantidad;
+    private Date fecha;
     private int id_usuario;
 
-    public EntradasBean(int id_entrada, int id_producto, int numero_lote, Date fecha, int cantidad, int id_usuario) {
+    public EntradasBean(int id_entrada, int id_lote, int cantidad, Date fecha, int id_usuario) {
         this.id_entrada = id_entrada;
-        this.id_producto = id_producto;
-        this.numero_lote = numero_lote;
-        this.fecha = fecha;
+        this.id_lote = id_lote;
         this.cantidad = cantidad;
+        this.fecha = fecha;
         this.id_usuario = id_usuario;
     }
 
-    public EntradasBean( int id_producto, int numero_lote, Date fecha, int cantidad, int id_usuario) {
-        this.id_producto = id_producto;
-        this.numero_lote = numero_lote;
-        this.fecha = fecha;
+    public EntradasBean(int id_lote, int cantidad, Date fecha, int id_usuario) {
+        this.id_lote = id_lote;
         this.cantidad = cantidad;
+        this.fecha = fecha;
         this.id_usuario = id_usuario;
     }
 
@@ -44,21 +41,14 @@ public class EntradasBean {
         this.id_entrada = id_entrada;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public int getId_lote() {
+        return id_lote;
     }
 
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setId_lote(int id_lote) {
+        this.id_lote = id_lote;
     }
 
-    public int getNumero_lote() {
-        return numero_lote;
-    }
-
-    public void setNumero_lote(int numero_lote) {
-        this.numero_lote = numero_lote;
-    }
 
     public Date getFecha() {
         return fecha;
@@ -86,7 +76,7 @@ public class EntradasBean {
 
     @Override
     public String toString() {
-        return "id_entrada=" + id_entrada + ", id_producto=" + id_producto + ", numero_lote=" + numero_lote + ", fecha="
+        return "id_entrada=" + id_entrada + ", id_lote=" + id_lote + ", fecha="
                 + fecha + ", cantidad=" + cantidad + ", id_usuario=" + id_usuario;
     }
 

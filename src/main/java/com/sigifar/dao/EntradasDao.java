@@ -26,17 +26,16 @@ public class EntradasDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO Entradas (id_producto, numero_lote, cantidad, fecha, id_usuario) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Entradas (id_lote, cantidad, fecha, id_usuario) VALUES (?, ?, ?, ?)";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, entrada.getId_producto());
-            stmt.setInt(2, entrada.getNumero_lote());
-            stmt.setInt(3, entrada.getCantidad());
-            stmt.setDate(4, new java.sql.Date(entrada.getFecha().getTime()));
-            stmt.setInt(5, entrada.getId_usuario());
+            stmt.setInt(1, entrada.getId_lote());
+            stmt.setInt(2, entrada.getCantidad());
+            stmt.setDate(3, new java.sql.Date(entrada.getFecha().getTime()));
+            stmt.setInt(4, entrada.getId_usuario());
 
             int filas = stmt.executeUpdate();
 
@@ -103,18 +102,17 @@ public class EntradasDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "UPDATE Entradas SET id_producto = ?, numero_lote = ?, cantidad = ?, fecha = ?, id_usuario = ? WHERE id_entrada = ?";
+        String sql = "UPDATE Entradas SET id_lote = ?, cantidad = ?, fecha = ?, id_usuario = ? WHERE id_entrada = ?";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, entrada.getId_producto());
-            stmt.setInt(2, entrada.getNumero_lote());
-            stmt.setDate(3, new java.sql.Date(entrada.getFecha().getTime()));
-            stmt.setInt(4, entrada.getCantidad());
-            stmt.setInt(5, entrada.getId_usuario());
-            stmt.setInt(6, entrada.getId_entrada());
+            stmt.setInt(1, entrada.getId_lote());
+            stmt.setDate(2, new java.sql.Date(entrada.getFecha().getTime()));
+            stmt.setInt(3, entrada.getCantidad());
+            stmt.setInt(4, entrada.getId_usuario());
+            stmt.setInt(5, entrada.getId_entrada());
 
             int filas = stmt.executeUpdate();
 
@@ -157,10 +155,9 @@ public class EntradasDAO {
             while (rs.next()) {
                 EntradasBean entrada = new EntradasBean(
                         rs.getInt("id_entrada"),
-                        rs.getInt("id_producto"),
-                        rs.getInt("numero_lote"),
-                        rs.getDate("fecha"),
+                        rs.getInt("id_lote"),
                         rs.getInt("cantidad"),
+                        rs.getDate("fecha"),
                         rs.getInt("id_usuario")
                 );
                 entradas.add(entrada);
@@ -183,7 +180,6 @@ public class EntradasDAO {
                 System.err.println("Error al cerrar recursos: " + e.getMessage());
             }
         }
-
         return entradas;
     }
 
@@ -205,10 +201,9 @@ public class EntradasDAO {
             if (rs.next()) {
                 entrada = new EntradasBean(
                         rs.getInt("id_entrada"),
-                        rs.getInt("id_producto"),
-                        rs.getInt("numero_lote"),
-                        rs.getDate("fecha"),
+                        rs.getInt("id_lote"),
                         rs.getInt("cantidad"),
+                        rs.getDate("fecha"),
                         rs.getInt("id_usuario")
                 );
             }

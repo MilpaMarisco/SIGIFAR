@@ -13,18 +13,16 @@ import java.util.Date;
 public class SalidasBean {
 
     private int id_salida;
-    private int id_producto;
-    private int numero_lote;
+    private int id_lote;
     private Date fecha;
     private int cantidad;
     private String destino;
     private int id_usuario;
     private int id_transporte;
 
-    public SalidasBean(int id_salida, int id_producto, int numero_lote, Date fecha, int cantidad, String destino, int id_usuario, int id_transporte) {
+    public SalidasBean(int id_salida, int id_lote,int cantidad, Date fecha,  String destino, int id_usuario, int id_transporte) {
         this.id_salida = id_salida;
-        this.id_producto = id_producto;
-        this.numero_lote = numero_lote;
+        this.id_lote = id_lote;
         this.fecha = fecha;
         this.cantidad = cantidad;
         this.destino = destino;
@@ -40,21 +38,15 @@ public class SalidasBean {
         this.id_salida = id_salida;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public int getId_lote() {
+        return id_lote;
     }
 
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setId_lote(int id_lote) {
+        this.id_lote = id_lote;
     }
 
-    public int getNumero_lote() {
-        return numero_lote;
-    }
 
-    public void setNumero_lote(int numero_lote) {
-        this.numero_lote = numero_lote;
-    }
 
     public Date getFecha() {
         return fecha;
@@ -98,7 +90,7 @@ public class SalidasBean {
 
     @Override
     public String toString() {
-        return "id_salida=" + id_salida + ", id_producto=" + id_producto + ", numero_lote=" + numero_lote + ", fecha="
+        return "id_salida=" + id_salida + ", id_lote=" + id_lote + ", fecha="
                 + fecha + ", cantidad=" + cantidad + ", destino=" + destino + ", id_usuario=" + id_usuario + ", id_transporte=" + id_transporte;
     }
 

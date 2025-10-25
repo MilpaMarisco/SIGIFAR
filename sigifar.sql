@@ -1,7 +1,7 @@
 -- =============================================================
---  SCRIPT BASE DE DATOS SIGIFAR
+--  SCRIPT BASE DE DATOS SIGIFAR - CON LOTES
 --  Autor: Cristian Mariscurrena
---  Fecha: 2025-0-10
+--  Fecha: 2025-10-24
 -- =============================================================
 
 -- =============================================================
@@ -68,9 +68,7 @@ CREATE TABLE productos (
     nombre VARCHAR(150) NOT NULL,
     marca VARCHAR(100),
     presentacion VARCHAR(100),
-    numero_lote VARCHAR(100) NOT NULL,
     cantidad INT NOT NULL DEFAULT 0,
-    fecha_caducidad DATE NOT NULL,
     id_proveedor INT,
     id_ubicacion INT,
     FOREIGN KEY (id_proveedor) REFERENCES proveedores(id_proveedor),
@@ -78,16 +76,26 @@ CREATE TABLE productos (
 );
 
 -- -------------------------------------------------------------
+--  Tabla: lotes
+-- -------------------------------------------------------------
+CREATE TABLE lotes (
+    id_lote INT AUTO_INCREMENT PRIMARY KEY,
+    id_producto INT NOT NULL,
+    numero_lote VARCHAR(100) NOT NULL,
+    fecha_caducidad DATE NOT NULL,
+    FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
+);
+
+-- -------------------------------------------------------------
 --  Tabla: entradas
 -- -------------------------------------------------------------
 CREATE TABLE entradas (
     id_entrada INT AUTO_INCREMENT PRIMARY KEY,
-    id_producto INT NOT NULL,
-    numero_lote INT NOT NULL,
+    id_lote INT NOT NULL,
     cantidad INT NOT NULL,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_usuario INT,
-    FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
+    FOREIGN KEY (id_lote) REFERENCES lotes(id_lote),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
 
@@ -105,14 +113,13 @@ CREATE TABLE transporte (
 -- -------------------------------------------------------------
 CREATE TABLE salidas (
     id_salida INT AUTO_INCREMENT PRIMARY KEY,
-    id_producto INT NOT NULL,
-    numero_lote INT NOT NULL,
+    id_lote INT NOT NULL,
     cantidad INT NOT NULL,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     destino VARCHAR(200) NOT NULL,
     id_usuario INT,
     id_transporte INT,
-    FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
+    FOREIGN KEY (id_lote) REFERENCES lotes(id_lote),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_transporte) REFERENCES transporte(id_transporte)
 );
@@ -126,6 +133,7 @@ CREATE TABLE salidas (
 -- -------------------------------------------------------------
 DELETE FROM salidas;
 DELETE FROM entradas;
+DELETE FROM lotes;
 DELETE FROM productos;
 DELETE FROM proveedores;
 DELETE FROM ubicaciones;
@@ -159,18 +167,26 @@ VALUES
 -- -------------------------------------------------------------
 --  Productos
 -- -------------------------------------------------------------
-INSERT INTO productos (clave_producto, nombre, marca, presentacion, numero_lote, cantidad, fecha_caducidad, id_proveedor, id_ubicacion)
+INSERT INTO productos (clave_producto, nombre, marca, presentacion, cantidad, id_proveedor, id_ubicacion)
 VALUES
-('PROD-001', 'Paracetamol 500mg', 'Genfar', 'Caja 10 tabletas', 'L-001', 100, '2026-05-15', 1, 1),
-('PROD-002', 'Amoxicilina 875mg', 'Medifarma', 'Caja 14 tabletas', 'L-002', 50, '2025-12-20', 2, 2);
+('PROD-001', 'Paracetamol 500mg', 'Genfar', 'Caja 10 tabletas', 100, 1, 1),
+('PROD-002', 'Amoxicilina 875mg', 'Medifarma', 'Caja 14 tabletas', 50, 2, 2);
+
+-- -------------------------------------------------------------
+--  Lotes
+-- -------------------------------------------------------------
+INSERT INTO lotes (id_producto, numero_lote, fecha_caducidad)
+VALUES
+(1, 'L-001', '2026-05-15'),
+(2, 'L-002', '2025-12-20');
 
 -- -------------------------------------------------------------
 --  Entradas
 -- -------------------------------------------------------------
-INSERT INTO entradas (id_producto, numero_lote, cantidad, id_usuario)
+INSERT INTO entradas (id_lote, cantidad, id_usuario)
 VALUES
-(1, 1, 100, 1),
-(2, 2, 50, 2);
+(1, 100, 1),
+(2, 50, 2);
 
 -- -------------------------------------------------------------
 --  Transporte
@@ -183,18 +199,13 @@ VALUES
 -- -------------------------------------------------------------
 --  Salidas
 -- -------------------------------------------------------------
-INSERT INTO salidas (id_producto, numero_lote, cantidad, destino, id_usuario, id_transporte)
+INSERT INTO salidas (id_lote, cantidad, destino, id_usuario, id_transporte)
 VALUES
-(1, 1, 20, 'Clínica San José', 1, 1),
-(2, 2, 10, 'Hospital Central', 2, 2);
+(1, 20, 'Clínica San José', 1, 1),
+(2, 10, 'Hospital Central', 2, 2);
 
 -- =============================================================
 --  REACTIVAR RESTRICCIONES
 -- =============================================================
 SET FOREIGN_KEY_CHECKS = 1;
 SET SQL_SAFE_UPDATES = 1;
-
--- =============================================================
---  FIN DEL SCRIPT
--- =============================================================
-SELECT 'Base de datos SIGIFAR creada y poblada exitosamente.' AS mensaje;

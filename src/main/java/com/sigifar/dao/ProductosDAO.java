@@ -26,7 +26,7 @@ public class ProductosDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO Productos (clave_producto, nombre, marca, presentacion, numero_lote, cantidad, fecha_caducidad, id_proveedor, id_ubicacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Productos (clave_producto, nombre, marca, presentacion, cantidad, id_proveedor, id_ubicacion) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = db.getConnection();
@@ -36,11 +36,9 @@ public class ProductosDAO {
             stmt.setString(2, producto.getNombre());
             stmt.setString(3, producto.getMarca());
             stmt.setString(4, producto.getPresentacion());
-            stmt.setString(5, producto.getNumero_lote());
-            stmt.setInt(6, producto.getCantidad());
-            stmt.setString(7, producto.getFecha_caducidad());
-            stmt.setInt(8, producto.getId_proveedor());
-            stmt.setInt(9, producto.getId_ubicacion());
+            stmt.setInt(5, producto.getCantidad());
+            stmt.setInt(6, producto.getId_proveedor());
+            stmt.setInt(7, producto.getId_ubicacion());
 
             int filas = stmt.executeUpdate();
 
@@ -107,7 +105,7 @@ public class ProductosDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "UPDATE Productos SET clave_producto = ?, nombre = ?, marca = ?, presentacion = ?, numero_lote = ?, cantidad = ?, fecha_caducidad = ?, id_proveedor = ?, id_ubicacion = ? WHERE clave_producto = ?";
+        String sql = "UPDATE Productos SET clave_producto = ?, nombre = ?, marca = ?, presentacion = ?, cantidad = ?, id_proveedor = ?, id_ubicacion = ? WHERE clave_producto = ?";
 
         try {
             conn = db.getConnection();
@@ -117,12 +115,10 @@ public class ProductosDAO {
             stmt.setString(2, producto.getNombre());
             stmt.setString(3, producto.getMarca());
             stmt.setString(4, producto.getPresentacion());
-            stmt.setString(5, producto.getNumero_lote());
-            stmt.setInt(6, producto.getCantidad());
-            stmt.setString(7, producto.getFecha_caducidad());
-            stmt.setInt(8, producto.getId_proveedor());
-            stmt.setInt(9, producto.getId_ubicacion());
-            stmt.setString(10, producto.getClave_producto());
+            stmt.setInt(5, producto.getCantidad());
+            stmt.setInt(6, producto.getId_proveedor());
+            stmt.setInt(7, producto.getId_ubicacion());
+            stmt.setString(8, producto.getClave_producto());
 
             int filas = stmt.executeUpdate();
 
@@ -169,9 +165,7 @@ public class ProductosDAO {
                         rs.getString("nombre"),
                         rs.getString("marca"),
                         rs.getString("presentacion"),
-                        rs.getString("numero_lote"),
                         rs.getInt("cantidad"),
-                        rs.getString("fecha_caducidad"),
                         rs.getInt("id_proveedor"),
                         rs.getInt("id_ubicacion")
                 );
@@ -221,9 +215,7 @@ public class ProductosDAO {
                         rs.getString("nombre"),
                         rs.getString("marca"),
                         rs.getString("presentacion"),
-                        rs.getString("numero_lote"),
                         rs.getInt("cantidad"),
-                        rs.getString("fecha_caducidad"),
                         rs.getInt("id_proveedor"),
                         rs.getInt("id_ubicacion")
                 );

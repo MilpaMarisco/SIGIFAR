@@ -87,15 +87,11 @@ public class EntradaProductoController implements Initializable {
                 return;
             }
 
-            EntradasBean entrada = new EntradasBean(productosBean.getId_producto(), numero_lote, fecha, cantidad, usuario.getId_usuario());
+            EntradasBean entrada = new EntradasBean(numero_lote, cantidad, fecha, usuario.getId_usuario());
 
             //se inserta la entrada de productos a la base
             EntradasDAO entradasDAO = new EntradasDAO();
             entradasDAO.insertaEntrada(entrada);
-
-            //se actualiza el inventario existente
-            productosBean.setCantidad(productosBean.getCantidad() + cantidad);
-            productosDAO.actualizaProducto(productosBean);
 
             Utils.mostrarAlerta("Entrada registrada", "La entrada del producto se ha registrado exitosamente.", Alert.AlertType.INFORMATION);
         } catch (Exception e) {

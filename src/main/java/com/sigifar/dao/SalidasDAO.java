@@ -26,19 +26,18 @@ public class SalidasDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO Salidas (id_producto, numero_lote, cantidad, fecha, id_usuario, id_transporte, destino) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Salidas (id_lote, cantidad, fecha, destino, id_usuario, id_transporte) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, salida.getId_producto());
-            stmt.setInt(2, salida.getNumero_lote());
-            stmt.setInt(3, salida.getCantidad());
-            stmt.setDate(4, new java.sql.Date(salida.getFecha().getTime()));
-            stmt.setString(5, salida.getDestino());
-            stmt.setInt(6, salida.getId_usuario());
-            stmt.setInt(7, salida.getId_transporte());
+            stmt.setInt(1, salida.getId_lote());
+            stmt.setInt(2, salida.getCantidad());
+            stmt.setDate(3, new java.sql.Date(salida.getFecha().getTime()));
+            stmt.setString(4, salida.getDestino());
+            stmt.setInt(5, salida.getId_usuario());
+            stmt.setInt(6, salida.getId_transporte());
 
             int filas = stmt.executeUpdate();
 
@@ -105,20 +104,19 @@ public class SalidasDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "UPDATE Salidas SET id_producto = ?, numero_lote = ?, cantidad = ?, fecha = ?, destino = ?, id_usuario = ?, id_transporte = ? WHERE id_salida = ?";
+        String sql = "UPDATE Salidas SET id_lote = ?, cantidad = ?, fecha = ?, destino = ?, id_usuario = ?, id_transporte = ? WHERE id_salida = ?";
 
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, salida.getId_producto());
-            stmt.setInt(2, salida.getNumero_lote());
-            stmt.setInt(3, salida.getCantidad());
-            stmt.setDate(4, new java.sql.Date(salida.getFecha().getTime()));
-            stmt.setString(5, salida.getDestino());
-            stmt.setInt(6, salida.getId_usuario());
-            stmt.setInt(7, salida.getId_transporte());
-            stmt.setInt(8, salida.getId_salida());
+            stmt.setInt(1, salida.getId_lote());
+            stmt.setInt(2, salida.getCantidad());
+            stmt.setDate(3, new java.sql.Date(salida.getFecha().getTime()));
+            stmt.setString(4, salida.getDestino());
+            stmt.setInt(5, salida.getId_usuario());
+            stmt.setInt(6, salida.getId_transporte());
+            stmt.setInt(7, salida.getId_salida());
 
             int filas = stmt.executeUpdate();
 
@@ -161,10 +159,9 @@ public class SalidasDAO {
             while (rs.next()) {
                 SalidasBean salida = new SalidasBean(
                         rs.getInt("id_salida"),
-                        rs.getInt("id_producto"),
-                        rs.getInt("numero_lote"),
-                        rs.getDate("fecha"),
+                        rs.getInt("id_lote"),
                         rs.getInt("cantidad"),
+                        rs.getDate("fecha"),
                         rs.getString("destino"),
                         rs.getInt("id_usuario"),
                         rs.getInt("id_transporte")
@@ -211,10 +208,9 @@ public class SalidasDAO {
             if (rs.next()) {
                 salida = new SalidasBean(
                         rs.getInt("id_salida"),
-                        rs.getInt("id_producto"),
-                        rs.getInt("numero_lote"),
-                        rs.getDate("fecha"),
+                        rs.getInt("id_lote"),
                         rs.getInt("cantidad"),
+                        rs.getDate("fecha"),
                         rs.getString("destino"),
                         rs.getInt("id_usuario"),
                         rs.getInt("id_transporte")
