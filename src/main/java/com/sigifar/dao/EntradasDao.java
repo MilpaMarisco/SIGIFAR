@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sigifar.beans.EntradasBean;
+import com.sigifar.beans.SalidasBean;
 import com.sigifar.util.DBConnection;
 
 /**
@@ -227,6 +228,45 @@ public class EntradasDAO {
         }
 
         return entrada;
+    }
+
+    public int consultaEntradasPorLote(int id_lote) {
+        DBConnection db = new DBConnection();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT IFNULL(SUM(CANTIDAD), 0) AS TOTAL FROM ENTRADAS WHERE ID_LOTE = ?";
+
+        try {
+            conn = db.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id_lote);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("TOTAL");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al consultar entrada: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+        }
+
+        return 0;
     }
 
 }

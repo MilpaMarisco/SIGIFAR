@@ -172,6 +172,58 @@ public class LotesDAO {
         return lotes;
     }
 
+    public List<LotesBean> consultaLotesFIFO(int id_producto) {
+        DBConnection db = new DBConnection();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT L.ID_LOTE, L.ID_PRODUCTO, L.NUMERO_LOTE, L.FECHA_CADUCIDAD, "
+                + "MIN(E.FECHA) AS FECHA_LLEGADA "
+                + "FROM LOTES L "
+                + "JOIN ENTRADAS E ON L.ID_LOTE = E.ID_LOTE "
+                + "WHERE L.ID_PRODUCTO = ? "
+                + "GROUP BY L.ID_LOTE, L.ID_PRODUCTO, L.NUMERO_LOTE, L.FECHA_CADUCIDAD "
+                + "ORDER BY L.FECHA_CADUCIDAD ASC, MIN(E.FECHA) ASC";
+
+        List<LotesBean> lotes = new ArrayList<>();
+
+        try {
+            conn = db.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id_producto);
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                LotesBean lote = new LotesBean(
+                        rs.getInt("id_lote"),
+                        rs.getInt("id_producto"),
+                        rs.getString("numero_lote"),
+                        rs.getDate("fecha_caducidad")
+                );
+                lotes.add(lote);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al consultar lotes: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+
+            } catch (SQLException e) {
+                System.err.println("Error al consultar lotes: " + e.getMessage());
+
+            }
+        }
+        return lotes;
+    }
+
     public LotesBean consultaLote(String numero_lote) {
         DBConnection db = new DBConnection();
         Connection conn = null;

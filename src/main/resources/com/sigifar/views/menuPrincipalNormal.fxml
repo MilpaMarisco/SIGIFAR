@@ -56,7 +56,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="btnSalidaProducto" layoutX="424.0" layoutY="240.0" prefHeight="152.0" prefWidth="259.0" styleClass="icon-button" stylesheets="@../styles/menuPrincipalAdmin.css">
+        <Button fx:id="btnSalidaProducto" layoutX="424.0" layoutY="240.0" prefHeight="152.0" prefWidth="259.0" styleClass="icon-button" onAction="#salida" stylesheets="@../styles/menuPrincipalAdmin.css">
             <graphic>
                 <ImageView fitHeight="152.0" fitWidth="259.0" preserveRatio="true" styleClass="icon-button">
                     <image>

@@ -20,8 +20,17 @@ public class SalidasBean {
     private int id_usuario;
     private int id_transporte;
 
-    public SalidasBean(int id_salida, int id_lote,int cantidad, Date fecha,  String destino, int id_usuario, int id_transporte) {
+    public SalidasBean(int id_salida, int id_lote, int cantidad, Date fecha, String destino, int id_usuario, int id_transporte) {
         this.id_salida = id_salida;
+        this.id_lote = id_lote;
+        this.fecha = fecha;
+        this.cantidad = cantidad;
+        this.destino = destino;
+        this.id_usuario = id_usuario;
+        this.id_transporte = id_transporte;
+    }
+
+    public SalidasBean(int id_lote, int cantidad, Date fecha, String destino, int id_usuario, int id_transporte) {
         this.id_lote = id_lote;
         this.fecha = fecha;
         this.cantidad = cantidad;
@@ -45,8 +54,6 @@ public class SalidasBean {
     public void setId_lote(int id_lote) {
         this.id_lote = id_lote;
     }
-
-
 
     public Date getFecha() {
         return fecha;

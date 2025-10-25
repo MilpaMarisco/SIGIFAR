@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="salidaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+    minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0"
+    stylesheets="@../styles/salidaProducto.css" xmlns="http://javafx.com/javafx/25"
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sigifar.app.SalidaProductoController">
+
+    <children>
+        <ImageView id="imagePane" fitHeight="720.0" fitWidth="616.0" layoutX="664.0" layoutY="-3.0"
+            pickOnBounds="true">
+            <image>
+                <Image url="@../images/rackdefarmacia%202.png" />
+            </image>
+        </ImageView>
+
+        <!-- ENCABEZADO -->
+        <AnchorPane id="headerPane" prefHeight="91.0" prefWidth="1280.0">
+            <children>
+                <ImageView id="logoImage" fitHeight="53.0" fitWidth="280.0" layoutX="69.0"
+                    layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/image-removebg-preview%20(4)%201.png" />
+                    </image>
+                </ImageView>
+
+                <Label fx:id="lblNombreUsuario" alignment="CENTER_RIGHT" layoutX="1120.2"
+                    layoutY="20.0" styleClass="label" text="usuario" AnchorPane.rightAnchor="104.6"
+                    AnchorPane.topAnchor="20.0" />
+
+                <Label fx:id="lblCorreoUsuario" alignment="CENTER_RIGHT" layoutX="1125.8"
+                    layoutY="44.8" styleClass="label" text="correo" AnchorPane.rightAnchor="104.6"
+                    AnchorPane.topAnchor="44.8" />
+
+                <Button fx:id="btnDatosUsuario" layoutX="1200.0" layoutY="20.0" prefHeight="51.0"
+                    prefWidth="49.0" styleClass="icon-button"
+                    stylesheets="@../styles/menuPrincipalAdmin.css">
+                    <graphic>
+                        <ImageView fitHeight="44.0" fitWidth="46.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/image%202.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="btnHome" layoutX="14.0" layoutY="16.0" onAction="#home"
+                    prefHeight="51.0" prefWidth="49.0"
+                    stylesheets="@../styles/menuPrincipalAdmin.css">
+                    <graphic>
+                        <ImageView fitHeight="44.0" fitWidth="46.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/image%201.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </AnchorPane>
+
+        <!-- BOTÓN REGRESAR -->
+        <Button fx:id="btnRegregesar" layoutX="1143.0" layoutY="603.0" onAction="#regresar"
+            prefHeight="64.0" prefWidth="64.0" styleClass="icon-button"
+            stylesheets="@../styles/menuPrincipalAdmin.css">
+            <graphic>
+                <ImageView fitHeight="64.0" fitWidth="64.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/image%205.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+
+        <!-- TÍTULO -->
+        <Label id="titleLabel" alignment="TOP_CENTER" layoutX="139.0" layoutY="139.0"
+            prefHeight="89.0" prefWidth="359.0" stylesheets="@../styles/entradaProductos.css"
+            text="Salida de productos">
+            <font>
+                <Font name="Informal Roman" />
+            </font>
+        </Label>
+
+        <!-- CAMPOS DE ENTRADA -->
+        <Label layoutX="143.0" layoutY="247.0" styleClass="label" stylesheets="@../styles/login.css"
+            text="Clave del producto" />
+        <TextField fx:id="tfEPClave" layoutX="143.0" layoutY="272.0" prefWidth="350.0"
+            promptText="Clave del producto" style="-fx-border-radius: 30;" styleClass="text-field"
+            stylesheets="@../styles/login.css">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+        </TextField>
+
+        <Label layoutX="143.0" layoutY="328.0" styleClass="label" stylesheets="@../styles/login.css"
+            text="Cantidad" />
+        <TextField fx:id="tfEPCantidad" layoutX="143.0" layoutY="353.0" prefWidth="350.0"
+            promptText="Cantidad" style="-fx-border-radius: 30;" styleClass="password-field"
+            stylesheets="@../styles/login.css">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+        </TextField>
+
+        <!-- NUEVO: DESTINO -->
+        <Label layoutX="143.0" layoutY="413.0" styleClass="label" stylesheets="@../styles/login.css"
+            text="Destino" />
+        <TextField fx:id="tfDestino" layoutX="143.0" layoutY="438.0" prefWidth="350.0"
+            promptText="Destino" style="-fx-border-radius: 30;" styleClass="text-field"
+            stylesheets="@../styles/login.css">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+        </TextField>
+
+        <!-- NUEVO: TRANSPORTE -->
+        <Label layoutX="143.0" layoutY="493.0" styleClass="label" stylesheets="@../styles/login.css"
+            text="Transporte" />
+        <ComboBox fx:id="cbTransporte" layoutX="143.0" layoutY="518.0" prefWidth="350.0"
+            promptText="Seleccione un tipo de transporte" styleClass="combo-box"
+            stylesheets="@../styles/salidaProducto.css" />
+
+        <!-- BOTONES -->
+        <Button fx:id="btnCancelar" layoutX="358.0" layoutY="613.0" onAction="#cancelar"
+            prefHeight="64.0" prefWidth="64.0" styleClass="icon-button"
+            stylesheets="@../styles/menuPrincipalAdmin.css">
+            <graphic>
+                <ImageView fitHeight="64.0" fitWidth="64.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/image%204.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+
+        <Button fx:id="btnAceptar" layoutX="210.0" layoutY="613.0" onAction="#aceptar"
+            prefHeight="64.0" prefWidth="64.0" styleClass="icon-button"
+            stylesheets="@../styles/menuPrincipalAdmin.css">
+            <graphic>
+                <ImageView fitHeight="64.0" fitWidth="64.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/image%203.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </children>
+</AnchorPane>

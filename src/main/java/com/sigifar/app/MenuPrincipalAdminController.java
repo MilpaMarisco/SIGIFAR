@@ -64,6 +64,23 @@ public class MenuPrincipalAdminController implements Initializable{
             Utils.mostrarAlerta("Error", "No se pudo cargar la entrada de productos." + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+    
+    @FXML
+    private void salida(ActionEvent event) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/salidaProducto.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            Utils.mostrarAlerta("Error", "No se pudo cargar la salida de productos." + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
 
     @FXML
     private void cerrarSesion(ActionEvent event) throws IOException {

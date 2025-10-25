@@ -74,7 +74,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="btnSalidaProducto" layoutX="402.0" layoutY="123.0" prefHeight="152.0"
+        <Button fx:id="btnSalidaProducto" layoutX="402.0" layoutY="123.0" prefHeight="152.0" onAction="#salida"
             prefWidth="259.0" styleClass="icon-button"
             stylesheets="@../styles/menuPrincipalAdmin.css">
             <graphic>
