@@ -50,8 +50,8 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="btnHome" layoutX="14.0" layoutY="16.0" prefHeight="51.0"
-                    prefWidth="49.0" styleClass="icon-button"
+                <Button fx:id="btnHome" layoutX="14.0" layoutY="16.0" prefHeight="51.0" onAction="#home"
+                    prefWidth="49.0" id="btnHome"
                     stylesheets="@../styles/menuPrincipalAdmin.css">
                     <graphic>
                         <ImageView fitHeight="44.0" fitWidth="46.0" preserveRatio="true">
@@ -63,7 +63,7 @@
                 </Button>
             </children>
         </AnchorPane>
-        <Button id="btnBack" fx:id="btnRegregesar" layoutX="1143.0" layoutY="603.0"
+        <Button id="btnBack" fx:id="btnRegregesar" layoutX="1143.0" layoutY="603.0" onAction="#regresar"
             prefHeight="64.0" prefWidth="64.0" styleClass="icon-button"
             stylesheets="@../styles/menuPrincipalAdmin.css">
             <graphic>
@@ -108,7 +108,7 @@
                 <Cursor fx:constant="TEXT" />
             </cursor>
         </TextField>
-        <Button id="btnCancelar" fx:id="btnCancelar" layoutX="358.0" layoutY="591.0"
+        <Button id="btnCancelar" fx:id="btnCancelar" layoutX="358.0" layoutY="591.0" onAction="#cancelar"
             prefHeight="64.0" prefWidth="64.0" styleClass="icon-button"
             stylesheets="@../styles/menuPrincipalAdmin.css">
             <graphic>

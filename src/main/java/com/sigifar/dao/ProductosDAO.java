@@ -199,7 +199,7 @@ public class ProductosDAO {
         return productos;
     }
 
-    public static ProductosBean consultaProducto(String clave_producto) {
+    public ProductosBean consultaProducto(String clave_producto) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
