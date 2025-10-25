@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -34,6 +35,8 @@ import com.sigifar.dao.EntradasDAO;
 import com.sigifar.dao.LotesDAO;
 import com.sigifar.dao.ProductosDAO;
 import com.sigifar.util.Utils;
+
+import javafx.scene.control.DatePicker;
 
 /**
  *
@@ -56,6 +59,9 @@ public class EntradaProductoController implements Initializable {
     @FXML
     private TextField tfEPCantidad;
 
+    @FXML
+    private DatePicker dpEPCaducidad;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         UsuariosBean usuario = Sesion.getUsuarioActual();
@@ -71,6 +77,7 @@ public class EntradaProductoController implements Initializable {
 
         UsuariosBean usuario = Sesion.getUsuarioActual();
         ProductosDAO productosDAO = new ProductosDAO();
+        EntradasDAO entradasDAO = new EntradasDAO();
         LotesDAO lotesDAO = new LotesDAO();
 
         String clave_producto = tfEPClave.getText().trim();
@@ -101,7 +108,16 @@ public class EntradaProductoController implements Initializable {
             LotesBean lote = lotesDAO.consultaLotePK(numero_lote, productosBean.getId_producto());
 
             if (lote == null) {
-                lote = new LotesBean(productosBean.getId_producto(), numero_lote, null);
+                LocalDate fechaSeleccionada = dpEPCaducidad.getValue();
+
+                if (fechaSeleccionada == null) {
+                    Utils.mostrarAlerta("Fecha faltante", "Por favor selecciona una fecha de caducidad para el lote.", Alert.AlertType.WARNING);
+                    return;
+                }
+
+                Date fechaCaducidad = java.sql.Date.valueOf(fechaSeleccionada);
+
+                lote = new LotesBean(productosBean.getId_producto(), numero_lote, fechaCaducidad);
 
                 lotesDAO.insertaLote(lote);
 
@@ -110,13 +126,13 @@ public class EntradaProductoController implements Initializable {
 
             EntradasBean entrada = new EntradasBean(lote.getId_lote(), cantidad, fecha, usuario.getId_usuario());
 
-            EntradasDAO entradasDAO = new EntradasDAO();
             entradasDAO.insertaEntrada(entrada);
 
             Utils.mostrarAlerta("Entrada registrada", "La entrada del producto se ha registrado exitosamente.", Alert.AlertType.INFORMATION);
 
         } catch (Exception e) {
             Utils.mostrarAlerta("Error", "Ocurrió un error al insertar la entrada del producto", Alert.AlertType.ERROR);
+            e.printStackTrace();
         }
 
     }
@@ -128,6 +144,7 @@ public class EntradaProductoController implements Initializable {
             tfEPClave.setText("");
             tfEPLote.setText("");
             tfEPCantidad.setText("");
+            dpEPCaducidad.setValue(null);
         } catch (Exception e) {
             Utils.mostrarAlerta("Error", "Ocurrió un error al cancelar la entrada del producto", Alert.AlertType.ERROR);
         }

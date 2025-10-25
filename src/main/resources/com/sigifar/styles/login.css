@@ -26,7 +26,7 @@
 /* ======== Título Login ======== */
 #titleLabel {
   -fx-font-size: 50px;
-  -fx-text-fill: linear-gradient(to right, #00c3ff, #29abe2);
+  -fx-text-fill: linear-gradient(to right, #2190e9, #29abe2);
   -fx-font-weight: bold;
   -fx-padding: 10 0 35 0;
   -fx-effect: dropshadow(gaussian, rgba(0, 200, 255, 0.4), 15, 0.3, 0, 0);
@@ -58,8 +58,9 @@
 .text-field:focused,
 .password-field:focused {
   -fx-border-color: #00e5ff;
+  -fx-border-width: 1.2;
   -fx-effect: dropshadow(three-pass-box, rgba(0, 230, 255, 0.5), 12, 0, 0, 0);
-  -fx-background-color: linear-gradient(to bottom, #e3e3e3, #dcdcdc);
+  -fx-background-color: linear-gradient(to bottom, #e3e3e3, #cdcdcd);
 }
 /* ======== Botón principal (ícono o acción) ======== */
 .icon-button {
