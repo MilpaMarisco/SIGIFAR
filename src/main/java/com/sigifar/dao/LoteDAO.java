@@ -189,11 +189,56 @@ public class LoteDAO {
 
             if (rs.next()) {
                 lote = new LoteBean(
-                    rs.getInt("id_lote"),
-                    rs.getInt("id_producto"),
-                    rs.getString("numero_lote"),
-                    rs.getDate("fecha_caducidad")
-                );                
+                        rs.getInt("id_lote"),
+                        rs.getInt("id_producto"),
+                        rs.getString("numero_lote"),
+                        rs.getDate("fecha_caducidad")
+                );
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al consultar salida: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+        }
+
+        return lote;
+    }
+
+    public LoteBean consultaLotePK(String numero_lote, int id_producto) {
+        DBConnection db = new DBConnection();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM Lotes WHERE numero_lote = ? AND id_producto = ?";
+        LoteBean lote = null;
+
+        try {
+            conn = db.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, numero_lote);
+            stmt.setInt(2, id_producto);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                lote = new LoteBean(
+                        rs.getInt("id_lote"),
+                        rs.getInt("id_producto"),
+                        rs.getString("numero_lote"),
+                        rs.getDate("fecha_caducidad")
+                );
             }
         } catch (SQLException e) {
             System.err.println("Error al consultar salida: " + e.getMessage());
