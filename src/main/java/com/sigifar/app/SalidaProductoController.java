@@ -90,7 +90,6 @@ public class SalidaProductoController implements Initializable {
 
         String clave_producto = tfEPClave.getText().trim();
         int cantidad;
-        Date fecha = new Date();
         String destino = tfDestino.getText().trim();
         String transporteSeleccionado = cbTransporte.getValue();
 
@@ -183,6 +182,8 @@ public class SalidaProductoController implements Initializable {
         try {
             tfEPClave.setText("");
             tfEPCantidad.setText("");
+            tfDestino.setText("");
+            cbTransporte.getSelectionModel().select(null);
         } catch (Exception e) {
             Utils.mostrarAlerta("Error", "Ocurrió un error al cancelar la entrada del producto", Alert.AlertType.ERROR);
         }
