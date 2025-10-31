@@ -1,1 +1,39 @@
-module-info.class
+com\sigifar\images\image 3.png
+com\sigifar\images\rackdefarmacia 1.png
+com\sigifar\views\menuPrincipalNormal.fxml
+com\sigifar\images\Button (1).png
+com\sigifar\images\image 2.png
+com\sigifar\images\rackdefarmacia 2.png
+com\sigifar\images\image-removebg-preview (4) 1 (1).png
+com\sigifar\util\DBConnection.class
+com\sigifar\views\entradaProducto.fxml
+com\sigifar\views\login.fxml
+com\sigifar\images\Button (7).png
+com\sigifar\images\image 5.png
+com\sigifar\images\image-removebg-preview (4) 1.png
+com\sigifar\dao\UsuariosDAO.class
+com\sigifar\images\Button (5).png
+com\sigifar\images\Frame 5.png
+com\sigifar\images\image 4.png
+com\sigifar\styles\menuPrincipalAdmin.css
+com\sigifar\images\Button (2).png
+com\sigifar\dao\TransporteDAO.class
+com\sigifar\dao\ProveedoresDAO.class
+com\sigifar\styles\entradaProducto.css
+com\sigifar\dao\LotesDAO.class
+com\sigifar\images\racks 1.png
+com\sigifar\dao\UbicacionesDAO.class
+com\sigifar\images\Button.png
+com\sigifar\styles\salidaProducto.css
+com\sigifar\images\btn_login.png
+com\sigifar\images\Button (4).png
+com\sigifar\util\Utils.class
+com\sigifar\views\menuPrincipalAdmin.fxml
+com\sigifar\images\image 1.png
+com\sigifar\styles\login.css
+com\sigifar\util\Sesion.class
+com\sigifar\images\Button (6).png
+com\sigifar\views\salidaProducto.fxml
+com\sigifar\dao\ProductosDAO.class
+com\sigifar\images\Button (3).png
+com\sigifar\dao\SalidasDAO.class
