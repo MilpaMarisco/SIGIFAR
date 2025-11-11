@@ -42,7 +42,7 @@ public class UsuariosDAO {
                 nextId = rs.getInt("AUTO_INCREMENT");
             }
 
-            int claveUnica = 10000 + nextId;
+            int claveUnica = 1000 + nextId;
 
             String sqlInsert = "INSERT INTO Usuarios (clave_unica, nombres, apellidos, correo, contrasena, rol, imagen) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?)";

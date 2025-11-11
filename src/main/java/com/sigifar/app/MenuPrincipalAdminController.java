@@ -31,7 +31,7 @@ import com.sigifar.util.Utils;
  *
  * @author amilp
  */
-public class MenuPrincipalAdminController implements Initializable{
+public class MenuPrincipalAdminController implements Initializable {
 
     @FXML
     private Label lblNombreUsuario;
@@ -64,7 +64,7 @@ public class MenuPrincipalAdminController implements Initializable{
             Utils.mostrarAlerta("Error", "No se pudo cargar la entrada de productos." + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
-    
+
     @FXML
     private void salida(ActionEvent event) {
         try {
@@ -97,6 +97,21 @@ public class MenuPrincipalAdminController implements Initializable{
         }
     }
 
+    @FXML
+    private void bajaUsuario(ActionEvent event) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/bajaUsuario.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            Utils.mostrarAlerta("Error", "No se pudo cargar la alta de usuario." + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
 
     @FXML
     private void cerrarSesion(ActionEvent event) throws IOException {
@@ -109,7 +124,5 @@ public class MenuPrincipalAdminController implements Initializable{
         stage.setScene(new Scene(root));
         stage.show();
     }
-
-    
 
 }

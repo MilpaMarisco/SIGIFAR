@@ -23,7 +23,6 @@
             </image>
         </ImageView>
 
-        <!-- ENCABEZADO -->
         <AnchorPane id="headerPane" prefHeight="91.0" prefWidth="1280.0">
             <children>
                 <ImageView id="logoImage" fitHeight="53.0" fitWidth="280.0" layoutX="69.0"
@@ -67,7 +66,6 @@
             </children>
         </AnchorPane>
 
-        <!-- BOTÓN REGRESAR -->
         <Button fx:id="btnRegregesar" layoutX="1143.0" layoutY="603.0" onAction="#regresar"
             prefHeight="64.0" prefWidth="64.0" styleClass="icon-button"
             stylesheets="@../styles/menuPrincipalAdmin.css">
@@ -80,7 +78,6 @@
             </graphic>
         </Button>
 
-        <!-- TÍTULO -->
         <Label id="titleLabel" alignment="TOP_CENTER" layoutX="139.0" layoutY="139.0"
             prefHeight="89.0" prefWidth="359.0" stylesheets="@../styles/entradaProductos.css"
             text="Salida de productos">
@@ -89,7 +86,6 @@
             </font>
         </Label>
 
-        <!-- CAMPOS DE ENTRADA -->
         <Label layoutX="143.0" layoutY="247.0" styleClass="label" stylesheets="@../styles/login.css"
             text="Clave del producto" />
         <TextField fx:id="tfEPClave" layoutX="143.0" layoutY="272.0" prefWidth="350.0"
@@ -110,7 +106,6 @@
             </cursor>
         </TextField>
 
-        <!-- NUEVO: DESTINO -->
         <Label layoutX="143.0" layoutY="413.0" styleClass="label" stylesheets="@../styles/login.css"
             text="Destino" />
         <TextField fx:id="tfDestino" layoutX="143.0" layoutY="438.0" prefWidth="350.0"
@@ -121,14 +116,12 @@
             </cursor>
         </TextField>
 
-        <!-- NUEVO: TRANSPORTE -->
         <Label layoutX="143.0" layoutY="493.0" styleClass="label" stylesheets="@../styles/login.css"
             text="Transporte" />
         <ComboBox fx:id="cbTransporte" layoutX="143.0" layoutY="518.0" prefWidth="350.0"
             promptText="Seleccione un tipo de transporte" styleClass="combo-box"
             stylesheets="@../styles/salidaProducto.css" />
 
-        <!-- BOTONES -->
         <Button fx:id="btnCancelar" layoutX="358.0" layoutY="613.0" onAction="#cancelar"
             prefHeight="64.0" prefWidth="64.0" styleClass="icon-button"
             stylesheets="@../styles/menuPrincipalAdmin.css">

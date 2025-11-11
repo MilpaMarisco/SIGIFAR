@@ -125,6 +125,7 @@
         </Button>
         <Button fx:id="btnBajaUsuario" layoutX="402.0" layoutY="423.0" prefHeight="152.0"
             prefWidth="259.0" styleClass="icon-button"
+            onAction="#bajaUsuario"
             stylesheets="@../styles/menuPrincipalAdmin.css">
             <graphic>
                 <ImageView fitHeight="152.0" fitWidth="259.0" preserveRatio="true"
