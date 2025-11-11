@@ -129,8 +129,6 @@ public class AltaUsuarioController implements Initializable {
 
             usuariosDAO.insertaUsuario(nuevoUsuario);
 
-            Utils.mostrarAlerta("Éxito", "Usuario registrado exitosamente", Alert.AlertType.INFORMATION);
-
         } catch (Exception e) {
             Utils.mostrarAlerta("Error", "Ocurrió un error al registrar el usuario: " + e.getMessage(), Alert.AlertType.ERROR);
         }
