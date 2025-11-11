@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="altaUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/altaUsuario.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sigifar.app.AltaUsuarioController">
+
+    <children>
+        <ImageView id="imagePane" fitHeight="720.0" fitWidth="616.0" layoutX="664.0" layoutY="-3.0" pickOnBounds="true">
+            <image>
+                <Image url="@../images/rackdefarmacia%202.png" />
+            </image>
+        </ImageView>
+        <AnchorPane id="headerPane" prefHeight="91.0" prefWidth="1280.0">
+            <children>
+                <ImageView id="logoImage" fitHeight="53.0" fitWidth="280.0" layoutX="69.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/image-removebg-preview%20(4)%201.png" />
+                    </image>
+                </ImageView>
+
+                <Label fx:id="lblNombreUsuario" alignment="CENTER_RIGHT" layoutX="1120.2" layoutY="20.0" styleClass="label" text="usuario" AnchorPane.rightAnchor="104.59999999999991" AnchorPane.topAnchor="20.0" />
+
+                <Label fx:id="lblCorreoUsuario" alignment="CENTER_RIGHT" layoutX="1125.8000000000002" layoutY="44.8" styleClass="label" text="correo" AnchorPane.rightAnchor="104.59999999999991" AnchorPane.topAnchor="44.8" />
+
+                <Button fx:id="btnDatosUsuario" layoutX="1200.0" layoutY="20.0" prefHeight="51.0" prefWidth="49.0" styleClass="icon-button" stylesheets="@../styles/menuPrincipalAdmin.css">
+                    <graphic>
+                        <ImageView fitHeight="44.0" fitWidth="46.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/image%202.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button id="btnHome" fx:id="btnHome" layoutX="14.0" layoutY="16.0" onAction="#home" prefHeight="51.0" prefWidth="49.0" stylesheets="@../styles/menuPrincipalAdmin.css">
+                    <graphic>
+                        <ImageView fitHeight="44.0" fitWidth="46.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/image%201.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </AnchorPane>
+
+        <Button id="btnBack" fx:id="btnRegregesar" layoutX="1143.0" layoutY="603.0" onAction="#regresar" prefHeight="64.0" prefWidth="64.0" styleClass="icon-button" stylesheets="@../styles/menuPrincipalAdmin.css">
+            <graphic>
+                <ImageView fitHeight="64.0" fitWidth="64.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/image%205.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+
+        <Label id="titleLabel" alignment="TOP_CENTER" layoutX="167.0" layoutY="122.0" prefHeight="89.0" prefWidth="359.0" stylesheets="@../styles/entradaProductos.css" text="Registro de usuarios">
+            <font>
+                <Font name="Informal Roman" />
+            </font>
+        </Label>
+
+        <VBox layoutX="97.0" layoutY="212.0" prefWidth="500.0" spacing="10.0" stylesheets="@../styles/login.css">
+
+            <HBox spacing="10.0">
+                <TextField fx:id="tfNombre" prefWidth="240.0" promptText="Nombre(s)" style="-fx-border-radius: 30;" styleClass="text-field" stylesheets="@../styles/login.css">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                </TextField>
+                <TextField fx:id="tfApellidos" prefHeight="46.0" prefWidth="336.0" promptText="Apellidos" style="-fx-border-radius: 30;" styleClass="text-field">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                </TextField>
+            </HBox>
+
+            <TextField fx:id="tfEmail" promptText="Email" style="-fx-border-radius: 30;" styleClass="text-field">
+                <cursor>
+                    <Cursor fx:constant="TEXT" />
+                </cursor>
+            </TextField>
+
+            <TextField fx:id="tfConfirmarEmail" promptText="Confirmar email" style="-fx-border-radius: 30;" styleClass="text-field">
+                <cursor>
+                    <Cursor fx:constant="TEXT" />
+                </cursor>
+            </TextField>
+
+            <PasswordField fx:id="pfContrasena" promptText="Contraseña" style="-fx-border-radius: 30;" styleClass="text-field" stylesheets="@../styles/login.css">
+                <cursor>
+                    <Cursor fx:constant="TEXT" />
+                </cursor>
+            </PasswordField>
+
+            <PasswordField fx:id="pfConfirmarContrasena" promptText="Confirmar contraseña" style="-fx-border-radius: 30;" styleClass="text-field">
+                <cursor>
+                    <Cursor fx:constant="TEXT" />
+                </cursor>
+            </PasswordField>
+
+            <ComboBox fx:id="cbRol" layoutX="143.0" layoutY="518.0" prefHeight="42.0" prefWidth="524.0" promptText="Seleccione el rol del usuario" style="-fx-border-radius: 30;" styleClass="combo-box" stylesheets="@../styles/salidaProducto.css" />
+
+
+            <PasswordField fx:id="pfClaveAdmin" promptText="Clave de SuperAdmin" style="-fx-border-radius: 30;" styleClass="text-field">
+                <cursor>
+                    <Cursor fx:constant="TEXT" />
+                </cursor>
+            </PasswordField>
+
+            <PasswordField fx:id="pfRegistrarClave" promptText="Registrar clave de SuperAdmin" style="-fx-border-radius: 30;" styleClass="text-field" visible="false">
+                <cursor>
+                    <Cursor fx:constant="TEXT" />
+                </cursor>
+            </PasswordField>
+
+            <PasswordField fx:id="pfConfirmarClave" promptText="Confirmar clave de SuperAdmin" style="-fx-border-radius: 30;" styleClass="text-field" visible="false">
+                <cursor>
+                    <Cursor fx:constant="TEXT" />
+                </cursor>
+            </PasswordField>
+
+
+        </VBox>
+
+        <Button id="btnCancelar" fx:id="btnCancelar" layoutX="382.0" layoutY="611.0" onAction="#cancelar" prefHeight="64.0" prefWidth="64.0" styleClass="icon-button" stylesheets="@../styles/menuPrincipalAdmin.css">
+         <graphic>
+              <ImageView fitHeight="64.0" fitWidth="64.0" preserveRatio="true">
+                  <image>
+                      <Image url="@../images/image%204.png" />
+                  </image>
+              </ImageView>
+         </graphic></Button>
+        <Button id="btnAceptar" fx:id="btnAceptar" layoutX="232.0" layoutY="611.0" onAction="#aceptar" prefHeight="64.0" prefWidth="64.0" styleClass="icon-button" stylesheets="@../styles/menuPrincipalAdmin.css">
+         <graphic>
+              <ImageView fitHeight="64.0" fitWidth="64.0" preserveRatio="true">
+                  <image>
+                      <Image url="@../images/image%203.png" />
+                  </image>
+              </ImageView>
+         </graphic></Button>
+    </children>
+</AnchorPane>

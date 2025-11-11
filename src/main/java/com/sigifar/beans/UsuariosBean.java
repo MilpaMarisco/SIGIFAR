@@ -30,6 +30,26 @@ public class UsuariosBean {
         this.imagen = imagen;
     }
 
+    public UsuariosBean(int clave_unica, String nombres, String apellidos, String correo, String contrasena, String rol, byte[] imagen) {
+        this.id_usuario = id_usuario;
+        this.clave_unica = clave_unica;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.rol = rol;
+        this.imagen = imagen;
+    }
+
+    public UsuariosBean(String nombres, String apellidos, String correo, String contrasena, String rol, byte[] imagen) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.rol = rol;
+        this.imagen = imagen;
+    }
+
     public int getId_usuario() {
         return id_usuario;
     }

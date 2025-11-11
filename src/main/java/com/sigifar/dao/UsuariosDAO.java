@@ -14,6 +14,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sigifar.util.Utils;
+
+import javafx.scene.control.Alert;
+
 /**
  * @author amilp
  */
@@ -24,14 +28,26 @@ public class UsuariosDAO {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
-
-        String sql = "INSERT INTO Usuarios (clave_unica, nombres, apellidos, correo, contrasena, rol, imagen) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        ResultSet rs = null;
 
         try {
             conn = db.getConnection();
-            stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, usuario.getClave_unica());
+            String sqlNextId = "SELECT AUTO_INCREMENT FROM information_schema.TABLES " + "WHERE TABLE_SCHEMA = 'sigifar' AND TABLE_NAME = 'usuarios'";
+            stmt = conn.prepareStatement(sqlNextId);
+            rs = stmt.executeQuery();
+
+            int nextId = 0;
+            if (rs.next()) {
+                nextId = rs.getInt("AUTO_INCREMENT");
+            }
+
+            int claveUnica = 10000 + nextId;
+
+            String sqlInsert = "INSERT INTO Usuarios (clave_unica, nombres, apellidos, correo, contrasena, rol, imagen) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            stmt = conn.prepareStatement(sqlInsert);
+            stmt.setInt(1, claveUnica);
             stmt.setString(2, usuario.getNombres());
             stmt.setString(3, usuario.getApellidos());
             stmt.setString(4, usuario.getCorreo());
@@ -42,15 +58,20 @@ public class UsuariosDAO {
             int filas = stmt.executeUpdate();
 
             if (filas > 0) {
-                System.out.println("Usuario insertado correctamente.");
-            } else {
-                System.out.println("No se insertó ninguna fila.");
+                if (usuario.getRol().equals("SuperAdmin")) {
+                    Utils.mostrarAlerta("Éxito", "Usuario SuperAdmin registrado correctamente. Clave Única: " + claveUnica, Alert.AlertType.INFORMATION);
+                } else {
+                    Utils.mostrarAlerta("Éxito", "Usuario registrado correctamente. Clave Única: " + claveUnica, Alert.AlertType.INFORMATION);
+                }
             }
 
         } catch (SQLException e) {
             System.err.println("Error al insertar usuario: " + e.getMessage());
         } finally {
             try {
+                if (rs != null) {
+                    rs.close();
+                }
                 if (stmt != null) {
                     stmt.close();
                 }
@@ -218,7 +239,7 @@ public class UsuariosDAO {
                         rs.getString("rol"),
                         rs.getBytes("imagen")
                 );
-                
+
             }
 
         } catch (SQLException e) {
@@ -269,8 +290,7 @@ public class UsuariosDAO {
                         rs.getString("rol"),
                         rs.getBytes("imagen")
                 );
-            }
-            else{
+            } else {
                 System.out.println("No se encontró ningún usuario con las credenciales proporcionadas.");
             }
 
