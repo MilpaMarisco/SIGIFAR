@@ -64,7 +64,7 @@ public class ProductosDAO {
         }
     }
 
-    public void eliminaProducto(int clave_producto) {
+    public void eliminaProducto(String clave_producto) {
         DBConnection db = new DBConnection();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -74,7 +74,7 @@ public class ProductosDAO {
         try {
             conn = db.getConnection();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, clave_producto);
+            stmt.setString(1, clave_producto);
 
             int filas = stmt.executeUpdate();
 

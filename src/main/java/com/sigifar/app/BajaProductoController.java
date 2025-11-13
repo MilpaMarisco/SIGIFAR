@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sigifar.beans.ProductosBean;
+import com.sigifar.dao.ProductosDAO;
 import com.sigifar.dao.UsuariosDAO;
 import com.sigifar.util.Utils;
 
@@ -33,7 +35,7 @@ import com.sigifar.util.Utils;
  *
  * @author amilp
  */
-public class BajaUsuarioController implements Initializable {
+public class BajaProductoController implements Initializable {
 
     @FXML
     private Label lblNombreUsuario;
@@ -42,7 +44,7 @@ public class BajaUsuarioController implements Initializable {
     private Label lblCorreoUsuario;
 
     @FXML
-    private TextField tfUsuario;
+    private TextField tfProducto;
 
     @FXML
     private PasswordField pfClaveAdmin;
@@ -60,13 +62,13 @@ public class BajaUsuarioController implements Initializable {
     @FXML
     public void aceptar() {
         UsuariosBean usuario = Sesion.getUsuarioActual();
-        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        ProductosDAO productosDAO = new ProductosDAO();
 
-        String claveUsuarioEliminar = tfUsuario.getText().trim();
+        String claveProductoEliminar = tfProducto.getText();
         String claveAdmin = pfClaveAdmin.getText().trim();
 
         try {
-            if (claveUsuarioEliminar.isEmpty() || claveAdmin.isEmpty()) {
+            if (claveProductoEliminar.isEmpty() || claveAdmin.isEmpty()) {
                 Utils.mostrarAlerta("Error", "Todos los campos son obligatorios", Alert.AlertType.ERROR);
                 return;
             }            
@@ -76,27 +78,30 @@ public class BajaUsuarioController implements Initializable {
                 return;
             }
 
-            UsuariosBean usuarioEliminarBean = usuariosDAO.consultaUsuario(Integer.parseInt(claveUsuarioEliminar));
+            ProductosBean productoEliminar = productosDAO.consultaProducto(claveProductoEliminar);
 
-            if (usuarioEliminarBean == null) {
+            if (productoEliminar == null) {
                 Utils.mostrarAlerta("Error", "Usuario no encontrado", Alert.AlertType.ERROR);
                 return;
             }
 
-            usuariosDAO.eliminaUsuario(Integer.parseInt(claveUsuarioEliminar));
+            productosDAO.eliminaProducto(claveProductoEliminar);
             
-            Utils.mostrarAlerta("Éxito", "Usuario [" + usuarioEliminarBean.getNombres() + " " + usuarioEliminarBean.getApellidos() + "] eliminado correctamente", Alert.AlertType.CONFIRMATION);
+            Utils.mostrarAlerta("Éxito", "Producto [" + productoEliminar.getNombre() + "] eliminado correctamente", Alert.AlertType.CONFIRMATION);
 
         } catch (Exception e) {
-            Utils.mostrarAlerta("Error", "Ocurrió un error al eliminar el usuario: " + e.getMessage(), Alert.AlertType.ERROR);
+            Utils.mostrarAlerta("Error", "Ocurrió un error al registrar el producto: " + e.getMessage(), Alert.AlertType.ERROR);
+            
         }
+
+        
     }
 
     @FXML
     public void cancelar() {
 
         try {
-            tfUsuario.clear();
+            tfProducto.clear();
             pfClaveAdmin.clear();
         } catch (Exception e) {
             Utils.mostrarAlerta("Error", "Ocurrió un error al cancelar la entrada del producto", Alert.AlertType.ERROR);
