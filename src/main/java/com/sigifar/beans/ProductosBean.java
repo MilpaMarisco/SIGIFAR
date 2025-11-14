@@ -22,6 +22,16 @@ public class ProductosBean {
         this.id_ubicacion = id_ubicacion;
     }
 
+        public ProductosBean(String clave_producto, String nombre, String marca, String presentacion, int cantidad, int id_proveedor, int id_ubicacion) {
+        this.clave_producto = clave_producto;
+        this.nombre = nombre;
+        this.marca = marca;
+        this.presentacion = presentacion;
+        this.cantidad = cantidad;
+        this.id_proveedor = id_proveedor;
+        this.id_ubicacion = id_ubicacion;
+    }
+
     public int getId_producto() {
         return id_producto;
     }

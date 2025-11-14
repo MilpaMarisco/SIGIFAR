@@ -130,6 +130,23 @@ public class MenuPrincipalAdminController implements Initializable {
     }
 
     @FXML
+    private void altaProducto(ActionEvent event) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sigifar/views/altaProducto.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            Utils.mostrarAlerta("Error", "No se pudo cargar la alta de producto." + e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void cerrarSesion(ActionEvent event) throws IOException {
         Sesion.cerrarSesion();
 

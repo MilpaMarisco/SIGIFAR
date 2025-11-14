@@ -87,6 +87,7 @@
             </graphic>
         </Button>
         <Button fx:id="btnAltaProducto" layoutX="66.0" layoutY="271.0" prefHeight="152.0"
+            onAction="#altaProducto"
             prefWidth="259.0" styleClass="icon-button"
             stylesheets="@../styles/menuPrincipalAdmin.css">
             <graphic>
