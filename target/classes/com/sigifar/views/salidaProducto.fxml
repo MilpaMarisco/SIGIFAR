@@ -119,7 +119,7 @@
         <Label layoutX="143.0" layoutY="493.0" styleClass="label" stylesheets="@../styles/login.css"
             text="Transporte" />
         <ComboBox fx:id="cbTransporte" layoutX="143.0" layoutY="518.0" prefWidth="350.0"
-            promptText="Seleccione un tipo de transporte" styleClass="combo-box"
+            promptText="Seleccione un transportista" styleClass="combo-box"
             stylesheets="@../styles/salidaProducto.css" />
 
         <Button fx:id="btnCancelar" layoutX="358.0" layoutY="613.0" onAction="#cancelar"

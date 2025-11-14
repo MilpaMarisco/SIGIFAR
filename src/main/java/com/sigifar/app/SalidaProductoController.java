@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -33,11 +34,15 @@ import java.util.ResourceBundle;
 import com.sigifar.beans.EntradasBean;
 import com.sigifar.beans.LotesBean;
 import com.sigifar.beans.ProductosBean;
+import com.sigifar.beans.ProveedoresBean;
 import com.sigifar.beans.SalidasBean;
+import com.sigifar.beans.TransporteBean;
 import com.sigifar.dao.EntradasDAO;
 import com.sigifar.dao.LotesDAO;
 import com.sigifar.dao.ProductosDAO;
+import com.sigifar.dao.ProveedoresDAO;
 import com.sigifar.dao.SalidasDAO;
+import com.sigifar.dao.TransporteDAO;
 import com.sigifar.util.Utils;
 
 import javafx.scene.control.DatePicker;
@@ -64,18 +69,37 @@ public class SalidaProductoController implements Initializable {
     private TextField tfDestino;
 
     @FXML
-    private ComboBox<String> cbTransporte;
+    private ComboBox<TransporteBean> cbTransporte;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         UsuariosBean usuario = Sesion.getUsuarioActual();
 
-        cbTransporte.getItems().addAll("Camion 1", "Camion 2", "Camion 3");
+        TransporteDAO transporteDAO = new TransporteDAO();
+        List<TransporteBean> transporteBean = transporteDAO.consultaTransporte();
+
+        cbTransporte.getItems().addAll(transporteBean);
 
         if (usuario != null) {
             lblNombreUsuario.setText(usuario.getNombres() + " " + usuario.getApellidos());
             lblCorreoUsuario.setText(usuario.getCorreo());
         }
+
+        cbTransporte.setCellFactory(param -> new ListCell<TransporteBean>() {
+            @Override
+            protected void updateItem(TransporteBean item, boolean empty) {
+                super.updateItem(item, empty);
+                setText((item == null || empty) ? null : item.getTransportista());
+            }
+        });
+
+        cbTransporte.setButtonCell(new ListCell<TransporteBean>() {
+            @Override
+            protected void updateItem(TransporteBean item, boolean empty) {
+                super.updateItem(item, empty);
+                setText((item == null || empty) ? null : item.getTransportista());
+            }
+        });
 
     }
 
@@ -91,7 +115,7 @@ public class SalidaProductoController implements Initializable {
         String clave_producto = tfEPClave.getText().trim();
         int cantidad;
         String destino = tfDestino.getText().trim();
-        String transporteSeleccionado = cbTransporte.getValue();
+        TransporteBean transporteSeleccionado = cbTransporte.getValue();
 
         try {
             cantidad = Integer.parseInt(tfEPCantidad.getText().trim());
@@ -115,7 +139,6 @@ public class SalidaProductoController implements Initializable {
                 return;
             }
 
-            
             List<LotesBean> lotes = lotesDAO.consultaLotesFIFO(producto.getId_producto());
 
             if (lotes == null || lotes.isEmpty()) {
@@ -146,7 +169,7 @@ public class SalidaProductoController implements Initializable {
                         cantidadASacar,
                         fechaSalida,
                         destino,
-                        usuario.getId_usuario(), 
+                        usuario.getId_usuario(),
                         transporteSeleccionado != null ? cbTransporte.getSelectionModel().getSelectedIndex() + 1 : 0
                 );
                 salidasDAO.insertaSalida(salida);
